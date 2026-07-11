@@ -1,0 +1,107 @@
+name: Tracal
+
+options:
+  bundleIdPrefix: com.ajaypawriya
+  createIntermediateGroups: true
+  deploymentTarget:
+    iOS: "26.0"
+  generateEmptyDirectories: true
+  groupSortPosition: top
+
+packages:
+  TracalCore:
+    path: Packages/TracalCore
+
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    SWIFT_STRICT_CONCURRENCY: complete
+    CLANG_ENABLE_MODULES: YES
+    DEVELOPMENT_TEAM: 626Z5FFYFU
+    CODE_SIGN_STYLE: Automatic
+    TRACAL_DISPLAY_NAME: Tracal
+
+configFiles:
+  Debug: Config/Defaults.xcconfig
+  Release: Config/Defaults.xcconfig
+
+targets:
+  Tracal:
+    type: application
+    platform: iOS
+    deploymentTarget: "26.0"
+    sources:
+      - path: Tracal
+    info:
+      path: Config/Info.plist
+      properties:
+        CFBundleDisplayName: Tracal
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        LSRequiresIPhoneOS: true
+        NSCameraUsageDescription: Tracal uses the camera only when you photograph food or a nutrition label for analysis.
+        TRACAL_GATEWAY_BASE_URL: $(TRACAL_GATEWAY_BASE_URL)
+        TRACAL_GATEWAY_DEVICE_TOKEN: $(TRACAL_GATEWAY_DEVICE_TOKEN)
+        UILaunchScreen: {}
+        UIRequiredDeviceCapabilities:
+          - arm64
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+        UISupportedInterfaceOrientations~ipad:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationPortraitUpsideDown
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.ajaypawriya.tracal
+        PRODUCT_NAME: Tracal
+        MARKETING_VERSION: 0.1.0
+        CURRENT_PROJECT_VERSION: 12
+        GENERATE_INFOPLIST_FILE: NO
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        ENABLE_PREVIEWS: YES
+        SUPPORTS_MACCATALYST: NO
+        TARGETED_DEVICE_FAMILY: "1"
+    dependencies:
+      - package: TracalCore
+
+  TracalTests:
+    type: bundle.unit-test
+    platform: iOS
+    deploymentTarget: "26.0"
+    sources:
+      - path: TracalTests
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.ajaypawriya.tracal.tests
+        GENERATE_INFOPLIST_FILE: YES
+    dependencies:
+      - target: Tracal
+      - package: TracalCore
+
+  TracalUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    deploymentTarget: "26.0"
+    sources:
+      - path: TracalUITests
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.ajaypawriya.tracal.ui-tests
+        GENERATE_INFOPLIST_FILE: YES
+        TEST_TARGET_NAME: Tracal
+    dependencies:
+      - target: Tracal
+
+schemes:
+  Tracal:
+    build:
+      targets:
+        Tracal: all
+        TracalTests: [test]
+        TracalUITests: [test]
+    test:
+      gatherCoverageData: true
+      targets:
+        - name: TracalTests
+        - name: TracalUITests

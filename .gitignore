@@ -1,0 +1,16 @@
+.DS_Store
+.build/
+DerivedData/
+.swiftpm/
+*.xcuserstate
+xcuserdata/
+node_modules/
+coverage/
+npm-debug.log*
+.env
+.env.*
+.vercel/
+.pair-*
+Config/Local.xcconfig
+
+vertex-meal-gateway/.env

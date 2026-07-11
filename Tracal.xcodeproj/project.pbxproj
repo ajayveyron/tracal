@@ -1,0 +1,848 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		03477BDA0A55FF1CD2696AE3 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7E9138852DE4A46BB29C7A /* HistoryView.swift */; };
+		037680AF47D01E27B120E307 /* MealEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = B815C1B6791AEC3281B2BF5A /* MealEntry.swift */; };
+		07388D2EAE62F3514B135B01 /* TracalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40062768C92CDCE08092FC53 /* TracalApp.swift */; };
+		0AC23411FC690C84873DAEAB /* NutritionSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16F667C952A3BEC6B5A93A8 /* NutritionSummary.swift */; };
+		160FBF9D9B001E5A9882EAF4 /* FoodItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8419E0A2A7B4418F6E76F918 /* FoodItem.swift */; };
+		20361C9B7394268FFDBCB17D /* sushi-e2e.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C10681994F31C2281099997F /* sushi-e2e.jpg */; };
+		23E33D7CF5F273926E0C8EE2 /* TracalCore in Frameworks */ = {isa = PBXBuildFile; productRef = 36AFDA708A3F5CF5B459FABA /* TracalCore */; };
+		24011BEE8CA22026FF72595F /* MealImagePipeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EFC76D7CC949A554C0B94A9 /* MealImagePipeline.swift */; };
+		264EDFEF28A402C37778ACC8 /* FoundationModelsMealParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D143B36EA13787CD1E3256 /* FoundationModelsMealParser.swift */; };
+		2D7AC818CF098A6EFF419D47 /* PendingAnalysis.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20B551A165E990D111BC413 /* PendingAnalysis.swift */; };
+		3431CC350F56D4E7C4EBA6CF /* EntryEditorSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E194C1D460F73E559E0C3153 /* EntryEditorSheet.swift */; };
+		37F17E06A54785BFBF270B19 /* GatewayAutoProvision.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FFE03BB74E2709C58F287F /* GatewayAutoProvision.swift */; };
+		3BEC37C99F98904AD0161E01 /* MacroSummaryRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF61102E031D6F9E86C4DEB /* MacroSummaryRow.swift */; };
+		3E616C5D52A6C75DB9D902D3 /* SurfaceStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B71D97EA29EB9060FFE839B /* SurfaceStyles.swift */; };
+		4BDA31ED1BF42902EC8C981C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FEAAA7EBBBC6D53A9099E1 /* SettingsView.swift */; };
+		4D42A8D61226991C6CF61B52 /* TracalCoreMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7592BCA9CF4D256B3F6557F2 /* TracalCoreMapper.swift */; };
+		559C1D33FA9A6DF586833BC1 /* VertexFallbackClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC10A247CA4B8B52DA2D341C /* VertexFallbackClient.swift */; };
+		5B3D5509009FA3B8214DA86B /* MealEntryRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDBC151C134A37220E5EA3B /* MealEntryRow.swift */; };
+		5C8C3EC288A25CC2A1CDE0D8 /* TracalAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361DC1904573254F9B99C03D /* TracalAppTests.swift */; };
+		7668F317D1A3D63C4E7405F6 /* FoundationModelsPhotoAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8353C083263B02B73A4785 /* FoundationModelsPhotoAnalyzer.swift */; };
+		79944A245C96A32E4D9C1D3E /* MealAnalysisPersistenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99858A5AA4633D5A284FCAD3 /* MealAnalysisPersistenceTests.swift */; };
+		86BBF19592CA72D00E6AB009 /* DeterministicMealParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304904929068C047E7F12F8B /* DeterministicMealParser.swift */; };
+		88F8131AF1BDEE4719A9A301 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5EB61A2BDAA94B2D447B1A6 /* Assets.xcassets */; };
+		9BCCD2DBA88C1D0458C4558E /* VisionNutritionLabelOCRService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5987291B3361C2A54D296DFF /* VisionNutritionLabelOCRService.swift */; };
+		9C36005071E7C62718223693 /* DailyGoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4BE34B2FDD773E99D6487A /* DailyGoal.swift */; };
+		A014939E4F7C0879DF20A897 /* LogComposerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E948B4E6E10FA7E5CEA01502 /* LogComposerView.swift */; };
+		A39C2FA4AC43FB1B3004D04B /* AppLockGate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEC12B9C13CB7DE146FC154 /* AppLockGate.swift */; };
+		A5989B143396EEDBA207FC51 /* CameraCaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FEDB270CAC2D4D475507FC /* CameraCaptureView.swift */; };
+		AA68017577B0FFE304436A25 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 7E0765F7E75EF43451227A96 /* PrivacyInfo.xcprivacy */; };
+		B435C5463C842AE824AAC739 /* MealAnalysisContracts.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FB11427C8368D16A8DF71A /* MealAnalysisContracts.swift */; };
+		BBAAE54345D4F3A7011F528C /* LogComposerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D3CC16853E139622D9EE0D /* LogComposerViewModel.swift */; };
+		BBBC72371F498CF3E8F42F3B /* CalorieSummaryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5E36E7A066976D9363DA63 /* CalorieSummaryCard.swift */; };
+		BC7A05647E70AB237C98C636 /* VertexGatewayClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4B2A96ACC884352E7F3CDC /* VertexGatewayClientTests.swift */; };
+		BFDAD15095CE8351BC50B469 /* AnalyzedMealDraft+Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0075865899C3DEBB42EA4D4E /* AnalyzedMealDraft+Persistence.swift */; };
+		CF37CC1DF670707BA59D481D /* DateStrip.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAA59600F7B0D6491B1B875 /* DateStrip.swift */; };
+		D776A7DC448A8572CFBAB46C /* GoalEditorSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7236C65AD8C1F0A9C50AEF8 /* GoalEditorSheet.swift */; };
+		DA50551493BAFD779ABA2529 /* TracalCore in Frameworks */ = {isa = PBXBuildFile; productRef = FFC44DAE786CAF9CB0D57745 /* TracalCore */; };
+		E6A6DB3BDEF47B361754581C /* TracalUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705CA63B8FE99BED9689301B /* TracalUITests.swift */; };
+		EEAB831BE6ED458FC312571C /* TracalTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = F931B86F3E54B0FF7D5136B2 /* TracalTokens.swift */; };
+		EF3E01DC61E26EECBDE9DD5F /* DefaultMealAnalysisRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B961BE3C78C5BF7AD9977B4E /* DefaultMealAnalysisRouter.swift */; };
+		FC2D86B3C1E2E09A1BD36CD4 /* TodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334C346EFEC705AA73B2FC82 /* TodayView.swift */; };
+		FF27472F6013B1F8B92A5472 /* AppRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F04F9E53C41EFDC4C540DA /* AppRootView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6B84467F54BFCBFCA1C0DFD5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E16DF28D0CF3F3C1BB1CBF5C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D6E1666FFC5AD44E11BEF4B7;
+			remoteInfo = Tracal;
+		};
+		6EB56BE5650B99EC5301E037 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E16DF28D0CF3F3C1BB1CBF5C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D6E1666FFC5AD44E11BEF4B7;
+			remoteInfo = Tracal;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0075865899C3DEBB42EA4D4E /* AnalyzedMealDraft+Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnalyzedMealDraft+Persistence.swift"; sourceTree = "<group>"; };
+		0EFC76D7CC949A554C0B94A9 /* MealImagePipeline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealImagePipeline.swift; sourceTree = "<group>"; };
+		1B71D97EA29EB9060FFE839B /* SurfaceStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurfaceStyles.swift; sourceTree = "<group>"; };
+		2655EAA18E0499C177E83E6C /* Defaults.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Defaults.xcconfig; sourceTree = "<group>"; };
+		304904929068C047E7F12F8B /* DeterministicMealParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeterministicMealParser.swift; sourceTree = "<group>"; };
+		32FEAAA7EBBBC6D53A9099E1 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		334C346EFEC705AA73B2FC82 /* TodayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayView.swift; sourceTree = "<group>"; };
+		361DC1904573254F9B99C03D /* TracalAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TracalAppTests.swift; sourceTree = "<group>"; };
+		3B4BE34B2FDD773E99D6487A /* DailyGoal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyGoal.swift; sourceTree = "<group>"; };
+		40062768C92CDCE08092FC53 /* TracalApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TracalApp.swift; sourceTree = "<group>"; };
+		4424F8482A03BFAD6253B1C6 /* TracalCore */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TracalCore; path = Packages/TracalCore; sourceTree = SOURCE_ROOT; };
+		4F7E9138852DE4A46BB29C7A /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		5987291B3361C2A54D296DFF /* VisionNutritionLabelOCRService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionNutritionLabelOCRService.swift; sourceTree = "<group>"; };
+		5AF61102E031D6F9E86C4DEB /* MacroSummaryRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacroSummaryRow.swift; sourceTree = "<group>"; };
+		705CA63B8FE99BED9689301B /* TracalUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TracalUITests.swift; sourceTree = "<group>"; };
+		7592BCA9CF4D256B3F6557F2 /* TracalCoreMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TracalCoreMapper.swift; sourceTree = "<group>"; };
+		76D143B36EA13787CD1E3256 /* FoundationModelsMealParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationModelsMealParser.swift; sourceTree = "<group>"; };
+		7BAA31741C6F360CD5F2941E /* TracalUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = TracalUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E0765F7E75EF43451227A96 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		8419E0A2A7B4418F6E76F918 /* FoodItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodItem.swift; sourceTree = "<group>"; };
+		8BDBC151C134A37220E5EA3B /* MealEntryRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealEntryRow.swift; sourceTree = "<group>"; };
+		90FEDB270CAC2D4D475507FC /* CameraCaptureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraCaptureView.swift; sourceTree = "<group>"; };
+		92F04F9E53C41EFDC4C540DA /* AppRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRootView.swift; sourceTree = "<group>"; };
+		99858A5AA4633D5A284FCAD3 /* MealAnalysisPersistenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealAnalysisPersistenceTests.swift; sourceTree = "<group>"; };
+		9B4B2A96ACC884352E7F3CDC /* VertexGatewayClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VertexGatewayClientTests.swift; sourceTree = "<group>"; };
+		9BEC12B9C13CB7DE146FC154 /* AppLockGate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLockGate.swift; sourceTree = "<group>"; };
+		9C8353C083263B02B73A4785 /* FoundationModelsPhotoAnalyzer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationModelsPhotoAnalyzer.swift; sourceTree = "<group>"; };
+		9FC74B4E03CF45CA7DB0643D /* TracalTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = TracalTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A6D3CC16853E139622D9EE0D /* LogComposerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogComposerViewModel.swift; sourceTree = "<group>"; };
+		B815C1B6791AEC3281B2BF5A /* MealEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealEntry.swift; sourceTree = "<group>"; };
+		B961BE3C78C5BF7AD9977B4E /* DefaultMealAnalysisRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultMealAnalysisRouter.swift; sourceTree = "<group>"; };
+		BE5E36E7A066976D9363DA63 /* CalorieSummaryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalorieSummaryCard.swift; sourceTree = "<group>"; };
+		C10681994F31C2281099997F /* sushi-e2e.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "sushi-e2e.jpg"; sourceTree = "<group>"; };
+		C16F667C952A3BEC6B5A93A8 /* NutritionSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionSummary.swift; sourceTree = "<group>"; };
+		C7236C65AD8C1F0A9C50AEF8 /* GoalEditorSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalEditorSheet.swift; sourceTree = "<group>"; };
+		CCAA59600F7B0D6491B1B875 /* DateStrip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateStrip.swift; sourceTree = "<group>"; };
+		D5EB61A2BDAA94B2D447B1A6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E194C1D460F73E559E0C3153 /* EntryEditorSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryEditorSheet.swift; sourceTree = "<group>"; };
+		E1D1409E804A69D73C009601 /* Tracal.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Tracal.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E1FB11427C8368D16A8DF71A /* MealAnalysisContracts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealAnalysisContracts.swift; sourceTree = "<group>"; };
+		E8FFE03BB74E2709C58F287F /* GatewayAutoProvision.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GatewayAutoProvision.swift; sourceTree = "<group>"; };
+		E948B4E6E10FA7E5CEA01502 /* LogComposerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogComposerView.swift; sourceTree = "<group>"; };
+		F20B551A165E990D111BC413 /* PendingAnalysis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingAnalysis.swift; sourceTree = "<group>"; };
+		F931B86F3E54B0FF7D5136B2 /* TracalTokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TracalTokens.swift; sourceTree = "<group>"; };
+		FC10A247CA4B8B52DA2D341C /* VertexFallbackClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VertexFallbackClient.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		044DB116C370E5BC6DE698E5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				23E33D7CF5F273926E0C8EE2 /* TracalCore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2BAD087661514A1914B68278 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DA50551493BAFD779ABA2529 /* TracalCore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		06C486C2EC1B7B861B730661 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				FF9E14D8E42B17AD9F174A0C /* History */,
+				2BF7B93852ACA382C4343705 /* Log */,
+				2DA887BADD2DA1857ADE99F8 /* Settings */,
+				1FA4B3D28E0BB0BDEE2F07FE /* Today */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		1552198D5759AAB0A8278ADD /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D5EB61A2BDAA94B2D447B1A6 /* Assets.xcassets */,
+				7E0765F7E75EF43451227A96 /* PrivacyInfo.xcprivacy */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		1FA4B3D28E0BB0BDEE2F07FE /* Today */ = {
+			isa = PBXGroup;
+			children = (
+				BE5E36E7A066976D9363DA63 /* CalorieSummaryCard.swift */,
+				CCAA59600F7B0D6491B1B875 /* DateStrip.swift */,
+				E194C1D460F73E559E0C3153 /* EntryEditorSheet.swift */,
+				5AF61102E031D6F9E86C4DEB /* MacroSummaryRow.swift */,
+				8BDBC151C134A37220E5EA3B /* MealEntryRow.swift */,
+				334C346EFEC705AA73B2FC82 /* TodayView.swift */,
+			);
+			path = Today;
+			sourceTree = "<group>";
+		};
+		23BD1D0DA846C92E52454FD6 /* DesignSystem */ = {
+			isa = PBXGroup;
+			children = (
+				1B71D97EA29EB9060FFE839B /* SurfaceStyles.swift */,
+				F931B86F3E54B0FF7D5136B2 /* TracalTokens.swift */,
+			);
+			path = DesignSystem;
+			sourceTree = "<group>";
+		};
+		2BF7B93852ACA382C4343705 /* Log */ = {
+			isa = PBXGroup;
+			children = (
+				90FEDB270CAC2D4D475507FC /* CameraCaptureView.swift */,
+				E948B4E6E10FA7E5CEA01502 /* LogComposerView.swift */,
+				A6D3CC16853E139622D9EE0D /* LogComposerViewModel.swift */,
+			);
+			path = Log;
+			sourceTree = "<group>";
+		};
+		2DA887BADD2DA1857ADE99F8 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				C7236C65AD8C1F0A9C50AEF8 /* GoalEditorSheet.swift */,
+				32FEAAA7EBBBC6D53A9099E1 /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		2F4E730912BFBFD1EDC689E1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0075865899C3DEBB42EA4D4E /* AnalyzedMealDraft+Persistence.swift */,
+				3B4BE34B2FDD773E99D6487A /* DailyGoal.swift */,
+				8419E0A2A7B4418F6E76F918 /* FoodItem.swift */,
+				B815C1B6791AEC3281B2BF5A /* MealEntry.swift */,
+				C16F667C952A3BEC6B5A93A8 /* NutritionSummary.swift */,
+				F20B551A165E990D111BC413 /* PendingAnalysis.swift */,
+				7592BCA9CF4D256B3F6557F2 /* TracalCoreMapper.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		30503D7C57E97D6ED5F367A5 /* Fixtures */ = {
+			isa = PBXGroup;
+			children = (
+				C10681994F31C2281099997F /* sushi-e2e.jpg */,
+			);
+			path = Fixtures;
+			sourceTree = "<group>";
+		};
+		413BBADBB9CBFAD3D0C0FF07 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				92F04F9E53C41EFDC4C540DA /* AppRootView.swift */,
+				40062768C92CDCE08092FC53 /* TracalApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		72E30AA468B65C6C715D5C89 /* TracalTests */ = {
+			isa = PBXGroup;
+			children = (
+				99858A5AA4633D5A284FCAD3 /* MealAnalysisPersistenceTests.swift */,
+				361DC1904573254F9B99C03D /* TracalAppTests.swift */,
+				9B4B2A96ACC884352E7F3CDC /* VertexGatewayClientTests.swift */,
+			);
+			path = TracalTests;
+			sourceTree = "<group>";
+		};
+		870981FC916C306999320F8C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E1D1409E804A69D73C009601 /* Tracal.app */,
+				9FC74B4E03CF45CA7DB0643D /* TracalTests.xctest */,
+				7BAA31741C6F360CD5F2941E /* TracalUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		883E142A7D0721AD6EB1793B /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				2655EAA18E0499C177E83E6C /* Defaults.xcconfig */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		8A2B84E6B608F8087B7F28B8 /* Security */ = {
+			isa = PBXGroup;
+			children = (
+				9BEC12B9C13CB7DE146FC154 /* AppLockGate.swift */,
+			);
+			path = Security;
+			sourceTree = "<group>";
+		};
+		90F2145C00E3C2101B1F637F = {
+			isa = PBXGroup;
+			children = (
+				883E142A7D0721AD6EB1793B /* Config */,
+				D69BEE17DC7D9C2031BC0D40 /* Packages */,
+				D213C9017753662D10A8A44D /* Tracal */,
+				72E30AA468B65C6C715D5C89 /* TracalTests */,
+				BA344ED43FC0A7DA9AB490EA /* TracalUITests */,
+				870981FC916C306999320F8C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A2B8E6365738D055CB275483 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				B961BE3C78C5BF7AD9977B4E /* DefaultMealAnalysisRouter.swift */,
+				304904929068C047E7F12F8B /* DeterministicMealParser.swift */,
+				76D143B36EA13787CD1E3256 /* FoundationModelsMealParser.swift */,
+				9C8353C083263B02B73A4785 /* FoundationModelsPhotoAnalyzer.swift */,
+				E8FFE03BB74E2709C58F287F /* GatewayAutoProvision.swift */,
+				E1FB11427C8368D16A8DF71A /* MealAnalysisContracts.swift */,
+				0EFC76D7CC949A554C0B94A9 /* MealImagePipeline.swift */,
+				FC10A247CA4B8B52DA2D341C /* VertexFallbackClient.swift */,
+				5987291B3361C2A54D296DFF /* VisionNutritionLabelOCRService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		BA344ED43FC0A7DA9AB490EA /* TracalUITests */ = {
+			isa = PBXGroup;
+			children = (
+				30503D7C57E97D6ED5F367A5 /* Fixtures */,
+				705CA63B8FE99BED9689301B /* TracalUITests.swift */,
+			);
+			path = TracalUITests;
+			sourceTree = "<group>";
+		};
+		D213C9017753662D10A8A44D /* Tracal */ = {
+			isa = PBXGroup;
+			children = (
+				413BBADBB9CBFAD3D0C0FF07 /* App */,
+				23BD1D0DA846C92E52454FD6 /* DesignSystem */,
+				06C486C2EC1B7B861B730661 /* Features */,
+				2F4E730912BFBFD1EDC689E1 /* Models */,
+				1552198D5759AAB0A8278ADD /* Resources */,
+				8A2B84E6B608F8087B7F28B8 /* Security */,
+				A2B8E6365738D055CB275483 /* Services */,
+			);
+			path = Tracal;
+			sourceTree = "<group>";
+		};
+		D69BEE17DC7D9C2031BC0D40 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				4424F8482A03BFAD6253B1C6 /* TracalCore */,
+			);
+			path = Packages;
+			sourceTree = "<group>";
+		};
+		FF9E14D8E42B17AD9F174A0C /* History */ = {
+			isa = PBXGroup;
+			children = (
+				4F7E9138852DE4A46BB29C7A /* HistoryView.swift */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6B7C16D8A699632C4E820DC5 /* TracalUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B7978A39B6C4D7403EE717F0 /* Build configuration list for PBXNativeTarget "TracalUITests" */;
+			buildPhases = (
+				DD1645DB36CBC96B35E50F86 /* Sources */,
+				5DF54FEA87185B21185B2CB6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B28EB264200F474E888ED62B /* PBXTargetDependency */,
+			);
+			name = TracalUITests;
+			packageProductDependencies = (
+			);
+			productName = TracalUITests;
+			productReference = 7BAA31741C6F360CD5F2941E /* TracalUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		BF92727F1AE1BA6C6AC47A96 /* TracalTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AD7F5ED00447E18AB87F65C7 /* Build configuration list for PBXNativeTarget "TracalTests" */;
+			buildPhases = (
+				F67B8439FD492A0CA70770F6 /* Sources */,
+				044DB116C370E5BC6DE698E5 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				78A87C2592A78EAC666AA12B /* PBXTargetDependency */,
+			);
+			name = TracalTests;
+			packageProductDependencies = (
+				36AFDA708A3F5CF5B459FABA /* TracalCore */,
+			);
+			productName = TracalTests;
+			productReference = 9FC74B4E03CF45CA7DB0643D /* TracalTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		D6E1666FFC5AD44E11BEF4B7 /* Tracal */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F43CC1F6FD665F6F348F680B /* Build configuration list for PBXNativeTarget "Tracal" */;
+			buildPhases = (
+				6B7366693210578EB2CBBAC6 /* Sources */,
+				827E277EA23CA6AD9292B06D /* Resources */,
+				2BAD087661514A1914B68278 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Tracal;
+			packageProductDependencies = (
+				FFC44DAE786CAF9CB0D57745 /* TracalCore */,
+			);
+			productName = Tracal;
+			productReference = E1D1409E804A69D73C009601 /* Tracal.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E16DF28D0CF3F3C1BB1CBF5C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					6B7C16D8A699632C4E820DC5 = {
+						DevelopmentTeam = 626Z5FFYFU;
+						ProvisioningStyle = Automatic;
+						TestTargetID = D6E1666FFC5AD44E11BEF4B7;
+					};
+					BF92727F1AE1BA6C6AC47A96 = {
+						DevelopmentTeam = 626Z5FFYFU;
+						ProvisioningStyle = Automatic;
+					};
+					D6E1666FFC5AD44E11BEF4B7 = {
+						DevelopmentTeam = 626Z5FFYFU;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = D4435CB6269A1533AFD51A0E /* Build configuration list for PBXProject "Tracal" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 90F2145C00E3C2101B1F637F;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				DBC77FC35BDCA777CD40BC67 /* XCLocalSwiftPackageReference "Packages/TracalCore" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 870981FC916C306999320F8C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D6E1666FFC5AD44E11BEF4B7 /* Tracal */,
+				BF92727F1AE1BA6C6AC47A96 /* TracalTests */,
+				6B7C16D8A699632C4E820DC5 /* TracalUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5DF54FEA87185B21185B2CB6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				20361C9B7394268FFDBCB17D /* sushi-e2e.jpg in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		827E277EA23CA6AD9292B06D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88F8131AF1BDEE4719A9A301 /* Assets.xcassets in Resources */,
+				AA68017577B0FFE304436A25 /* PrivacyInfo.xcprivacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6B7366693210578EB2CBBAC6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BFDAD15095CE8351BC50B469 /* AnalyzedMealDraft+Persistence.swift in Sources */,
+				A39C2FA4AC43FB1B3004D04B /* AppLockGate.swift in Sources */,
+				FF27472F6013B1F8B92A5472 /* AppRootView.swift in Sources */,
+				BBBC72371F498CF3E8F42F3B /* CalorieSummaryCard.swift in Sources */,
+				A5989B143396EEDBA207FC51 /* CameraCaptureView.swift in Sources */,
+				9C36005071E7C62718223693 /* DailyGoal.swift in Sources */,
+				CF37CC1DF670707BA59D481D /* DateStrip.swift in Sources */,
+				EF3E01DC61E26EECBDE9DD5F /* DefaultMealAnalysisRouter.swift in Sources */,
+				86BBF19592CA72D00E6AB009 /* DeterministicMealParser.swift in Sources */,
+				3431CC350F56D4E7C4EBA6CF /* EntryEditorSheet.swift in Sources */,
+				160FBF9D9B001E5A9882EAF4 /* FoodItem.swift in Sources */,
+				264EDFEF28A402C37778ACC8 /* FoundationModelsMealParser.swift in Sources */,
+				7668F317D1A3D63C4E7405F6 /* FoundationModelsPhotoAnalyzer.swift in Sources */,
+				37F17E06A54785BFBF270B19 /* GatewayAutoProvision.swift in Sources */,
+				D776A7DC448A8572CFBAB46C /* GoalEditorSheet.swift in Sources */,
+				03477BDA0A55FF1CD2696AE3 /* HistoryView.swift in Sources */,
+				A014939E4F7C0879DF20A897 /* LogComposerView.swift in Sources */,
+				BBAAE54345D4F3A7011F528C /* LogComposerViewModel.swift in Sources */,
+				3BEC37C99F98904AD0161E01 /* MacroSummaryRow.swift in Sources */,
+				B435C5463C842AE824AAC739 /* MealAnalysisContracts.swift in Sources */,
+				037680AF47D01E27B120E307 /* MealEntry.swift in Sources */,
+				5B3D5509009FA3B8214DA86B /* MealEntryRow.swift in Sources */,
+				24011BEE8CA22026FF72595F /* MealImagePipeline.swift in Sources */,
+				0AC23411FC690C84873DAEAB /* NutritionSummary.swift in Sources */,
+				2D7AC818CF098A6EFF419D47 /* PendingAnalysis.swift in Sources */,
+				4BDA31ED1BF42902EC8C981C /* SettingsView.swift in Sources */,
+				3E616C5D52A6C75DB9D902D3 /* SurfaceStyles.swift in Sources */,
+				FC2D86B3C1E2E09A1BD36CD4 /* TodayView.swift in Sources */,
+				07388D2EAE62F3514B135B01 /* TracalApp.swift in Sources */,
+				4D42A8D61226991C6CF61B52 /* TracalCoreMapper.swift in Sources */,
+				EEAB831BE6ED458FC312571C /* TracalTokens.swift in Sources */,
+				559C1D33FA9A6DF586833BC1 /* VertexFallbackClient.swift in Sources */,
+				9BCCD2DBA88C1D0458C4558E /* VisionNutritionLabelOCRService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DD1645DB36CBC96B35E50F86 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E6A6DB3BDEF47B361754581C /* TracalUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F67B8439FD492A0CA70770F6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				79944A245C96A32E4D9C1D3E /* MealAnalysisPersistenceTests.swift in Sources */,
+				5C8C3EC288A25CC2A1CDE0D8 /* TracalAppTests.swift in Sources */,
+				BC7A05647E70AB237C98C636 /* VertexGatewayClientTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		78A87C2592A78EAC666AA12B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D6E1666FFC5AD44E11BEF4B7 /* Tracal */;
+			targetProxy = 6EB56BE5650B99EC5301E037 /* PBXContainerItemProxy */;
+		};
+		B28EB264200F474E888ED62B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D6E1666FFC5AD44E11BEF4B7 /* Tracal */;
+			targetProxy = 6B84467F54BFCBFCA1C0DFD5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		141C122522433D0CF97F3C79 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2655EAA18E0499C177E83E6C /* Defaults.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 626Z5FFYFU;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+				TRACAL_DISPLAY_NAME = Tracal;
+			};
+			name = Debug;
+		};
+		186E45F4FD03FFB70ADE916A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 12;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Config/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ajaypawriya.tracal;
+				PRODUCT_NAME = Tracal;
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		27063AEF9F8CE11406C03C20 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ajaypawriya.tracal.ui-tests";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Tracal;
+			};
+			name = Debug;
+		};
+		58B00CCC545B7D297EA4A29B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ajaypawriya.tracal.tests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tracal.app/Tracal";
+			};
+			name = Release;
+		};
+		888B1FCBB586CD0B01C62095 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 12;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Config/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ajaypawriya.tracal;
+				PRODUCT_NAME = Tracal;
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		BBA3C5647505078A366C15BF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ajaypawriya.tracal.tests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tracal.app/Tracal";
+			};
+			name = Debug;
+		};
+		CC6805A281772A6505A88F70 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2655EAA18E0499C177E83E6C /* Defaults.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 626Z5FFYFU;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+				TRACAL_DISPLAY_NAME = Tracal;
+			};
+			name = Release;
+		};
+		EFE68C5FF59D808E1E9D5EC6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ajaypawriya.tracal.ui-tests";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Tracal;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AD7F5ED00447E18AB87F65C7 /* Build configuration list for PBXNativeTarget "TracalTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BBA3C5647505078A366C15BF /* Debug */,
+				58B00CCC545B7D297EA4A29B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		B7978A39B6C4D7403EE717F0 /* Build configuration list for PBXNativeTarget "TracalUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27063AEF9F8CE11406C03C20 /* Debug */,
+				EFE68C5FF59D808E1E9D5EC6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		D4435CB6269A1533AFD51A0E /* Build configuration list for PBXProject "Tracal" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				141C122522433D0CF97F3C79 /* Debug */,
+				CC6805A281772A6505A88F70 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		F43CC1F6FD665F6F348F680B /* Build configuration list for PBXNativeTarget "Tracal" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				888B1FCBB586CD0B01C62095 /* Debug */,
+				186E45F4FD03FFB70ADE916A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		DBC77FC35BDCA777CD40BC67 /* XCLocalSwiftPackageReference "Packages/TracalCore" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Packages/TracalCore;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		36AFDA708A3F5CF5B459FABA /* TracalCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = TracalCore;
+		};
+		FFC44DAE786CAF9CB0D57745 /* TracalCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = TracalCore;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = E16DF28D0CF3F3C1BB1CBF5C /* Project object */;
+}

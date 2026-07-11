@@ -1,0 +1,42 @@
+[
+  {
+    "name": "01-glass-plate-orbit",
+    "prompt": "Create a final production-quality iOS app icon for Tracal, a private AI calorie tracker. Concept: Glass Plate Orbit. A simple milky-cream glass plate fills about 58 percent of the canvas, crossed by one thick deep-sage orbit arc with a single graphite tracking dot. Centered, calm, iconic, excellent negative space, subtle depth and restrained Liquid Glass refraction. Warm cream full-bleed background, deep sage, translucent ivory, graphite. Full-bleed square 1024x1024 icon artwork, one strong central silhouette, broad shapes, approximately 16 percent visual safe margin, high contrast and legible at 29 pt, no transparency, no baked-in corner mask. The supplied screenshot is palette and material reference only; do not reproduce its UI."
+  },
+  {
+    "name": "02-meal-scan-aperture",
+    "prompt": "Create a final production-quality iOS app icon for Tracal, a private AI calorie tracker. Concept: Meal Scan Aperture. Abstract a dinner plate into four broad rounded camera-aperture segments, arranged as one symmetrical circular mark with generous negative space and a small calm graphite center. The segments must be thick and simple enough to survive tiny app-icon rendering. Warm cream full-bleed background, sage translucent glass segments, minimal graphite accent, restrained Liquid Glass refraction. Full-bleed square 1024x1024 icon artwork, strong central silhouette, approximately 16 percent visual safe margin, high contrast at 29 pt, no transparency, no baked-in corner mask. The supplied screenshot is palette and material reference only; do not reproduce its UI."
+  },
+  {
+    "name": "03-bowl-and-spark",
+    "prompt": "Create a final production-quality iOS app icon for Tracal, a private AI calorie tracker. Concept: Bowl and Spark. A single rounded deep-sage bowl sits low in the center, with one large soft four-point milky-glass spark floating above it to imply intelligent meal understanding. No food illustration and no steam. Make the bowl and spark form one compact vertical silhouette with broad geometry and quiet depth. Warm cream full-bleed background, deep sage bowl, translucent pale-sage and ivory spark, restrained Liquid Glass. Square 1024x1024, approximately 16 percent visual safe margin, highly legible at 29 pt, no transparency, no baked-in corner mask. The supplied screenshot is palette and material reference only; do not reproduce its UI."
+  },
+  {
+    "name": "04-portion-crescent",
+    "prompt": "Create a final production-quality iOS app icon for Tracal, a private AI calorie tracker. Concept: Portion Crescent. A bold centered deep-sage circular plate with one clean crescent-shaped portion removed toward the upper right, suggesting a tracked serving without becoming a pie chart or a bite mark. Add only one broad milky-glass highlight for dimensionality. Warm cream full-bleed field, deep sage disc, cream cutout, subtle translucent ivory highlight, restrained Liquid Glass. Square 1024x1024, strong central silhouette, approximately 16 percent visual safe margin, broad forms legible at 29 pt, no transparency, no baked-in corner mask. The supplied screenshot is palette and material reference only; do not reproduce its UI."
+  },
+  {
+    "name": "05-nutrition-lens",
+    "prompt": "Create a final production-quality iOS app icon for Tracal, a private AI calorie tracker. Concept: Nutrition Lens. A thick magnifying-lens symbol whose circular lens is also an abstract plate, centered slightly high with a short rounded handle angled down-right. The glass lens contains only one broad highlight and no food. Warm cream full-bleed background, sage translucent lens, graphite handle accent, restrained Liquid Glass refraction. Square 1024x1024 icon artwork, one compact silhouette, approximately 16 percent visual safe margin, broad geometry and high contrast at 29 pt, no transparency, no baked-in corner mask. The supplied screenshot is palette and material reference only; do not reproduce its UI."
+  },
+  {
+    "name": "06-three-macro-pebbles",
+    "prompt": "Create a final production-quality iOS app icon for Tracal, a private AI calorie tracker. Concept: Three Macro Pebbles. Three large rounded translucent glass pebbles nest into one compact triangular form: one above and two below, with controlled overlap and a strong unified silhouette. Use deep sage, muted warm clay, and smoky blue, all desaturated and unified by milky Liquid Glass over a warm cream full-bleed field. No labels or separate badges. Square 1024x1024 icon artwork, approximately 16 percent visual safe margin, broad shapes, high contrast and legibility at 29 pt, no transparency, no baked-in corner mask. The supplied screenshot is palette and material reference only; do not reproduce its UI."
+  },
+  {
+    "name": "07-logged-meal-check",
+    "prompt": "Create a final production-quality iOS app icon for Tracal, a private AI calorie tracker. Concept: Logged Meal Check. A centered abstract deep-sage plate whose cream negative space forms one broad integrated checkmark; the check is carved into the plate, never overlaid like a checkbox. Add a single restrained milky-glass highlight and subtle graphite depth. Warm cream full-bleed background, deep sage plate, translucent ivory highlight. Square 1024x1024 icon artwork, one strong central silhouette, approximately 16 percent visual safe margin, broad geometry legible at 29 pt, no transparency, no baked-in corner mask. The supplied screenshot is palette and material reference only; do not reproduce its UI."
+  },
+  {
+    "name": "08-ai-plate-focus",
+    "prompt": "Create a final production-quality iOS app icon for Tracal, a private AI calorie tracker. Concept: AI Plate Focus. A small solid translucent plate is surrounded by four thick, softly rounded deep-sage focus corners placed close enough to read as one cohesive mark. Include one graphite center dot, no technical HUD detail. Warm cream full-bleed background, deep sage corners, pale-sage milky glass plate, restrained Liquid Glass. Square 1024x1024 icon artwork, strong compact silhouette, approximately 16 percent visual safe margin, broad shapes and high contrast at 29 pt, no transparency, no baked-in corner mask. The supplied screenshot is palette and material reference only; do not reproduce its UI."
+  },
+  {
+    "name": "09-calorie-flame-vessel",
+    "prompt": "Create a final production-quality iOS app icon for Tracal, a private AI calorie tracker. Concept: Calorie Flame Vessel. One calm cream flame is nested inside a rounded sage glass vessel, forming a single unified teardrop silhouette that suggests measured energy rather than aggressive fire. Use a restrained muted-clay inner glow only if needed. Warm cream full-bleed background, deep sage translucent vessel, cream flame, subtle graphite depth, refined Liquid Glass refraction. Square 1024x1024 icon artwork, approximately 16 percent visual safe margin, broad geometry legible at 29 pt, no transparency, no baked-in corner mask. The supplied screenshot is palette and material reference only; do not reproduce its UI."
+  },
+  {
+    "name": "10-folded-meal-loop",
+    "prompt": "Create a final production-quality iOS app icon for Tracal, a private AI calorie tracker. Concept: Folded Meal Loop. One continuous thick deep-sage translucent ribbon curls into a plate-like loop; its endpoint subtly suggests a spoon bowl without becoming a literal utensil, letter, or infinity symbol. Center the single-stroke mark and let it occupy about 60 percent of the canvas with one graphite contact shadow. Warm cream full-bleed background, restrained Liquid Glass material. Square 1024x1024 icon artwork, approximately 16 percent visual safe margin, broad geometry and high contrast at 29 pt, no transparency, no baked-in corner mask. The supplied screenshot is palette and material reference only; do not reproduce its UI."
+  }
+]
