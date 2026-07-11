@@ -9,10 +9,13 @@ public struct LogComposerView: View {
     @Environment(\.modelContext) private var modelContext
     @StateObject private var model: LogComposerViewModel
     @State private var selectedPhoto: PhotosPickerItem?
+    @State private var isPhotoPickerActive = false
     @State private var isCameraActive = false
     @State private var pendingCameraPhoto: CapturedCameraPhoto?
+    @State private var didApplyLaunchMode = false
     @FocusState private var descriptionIsFocused: Bool
 
+    private let launchMode: MealLogLaunchMode?
     private let onSave: @MainActor (AnalyzedMealDraft) -> Void
 
     @MainActor
@@ -27,18 +30,38 @@ public struct LogComposerView: View {
                 allowsAnalyzerReplacement: true
             )
         )
+        self.launchMode = nil
         self.onSave = onSave
     }
 
     @MainActor
     init(
         initialDate: Date = .now,
+        launchMode: MealLogLaunchMode?,
+        onSave: @escaping @MainActor (AnalyzedMealDraft) -> Void
+    ) {
+        _model = StateObject(
+            wrappedValue: LogComposerViewModel(
+                loggedAt: initialDate,
+                analyzer: DefaultMealAnalysisRouter(),
+                allowsAnalyzerReplacement: true
+            )
+        )
+        self.launchMode = launchMode
+        self.onSave = onSave
+    }
+
+    @MainActor
+    init(
+        initialDate: Date = .now,
+        launchMode: MealLogLaunchMode? = nil,
         analyzer: any MealAnalysisRouting,
         onSave: @escaping @MainActor (AnalyzedMealDraft) -> Void
     ) {
         _model = StateObject(
             wrappedValue: LogComposerViewModel(loggedAt: initialDate, analyzer: analyzer)
         )
+        self.launchMode = launchMode
         self.onSave = onSave
     }
 
@@ -78,6 +101,12 @@ public struct LogComposerView: View {
             )
             .ignoresSafeArea()
         }
+        .photosPicker(
+            isPresented: $isPhotoPickerActive,
+            selection: $selectedPhoto,
+            matching: .images,
+            preferredItemEncoding: .current
+        )
         .task {
             let recorder = SwiftDataAIUsageRecorder(container: modelContext.container)
             model.configureAnalyzer(
@@ -87,6 +116,7 @@ public struct LogComposerView: View {
             )
             model.loadLocalModelAvailability()
             model.ingestUITestFixtureIfPresent()
+            await applyLaunchModeIfNeeded()
         }
         .onChange(of: selectedPhoto) { _, item in
             guard let item else { return }
@@ -266,17 +296,40 @@ public struct LogComposerView: View {
             .disabled(!CameraCaptureView.isAvailable || model.isAnalyzing)
             .accessibilityIdentifier("log.camera")
 
-            PhotosPicker(
-                selection: $selectedPhoto,
-                matching: .images,
-                preferredItemEncoding: .current
-            ) {
+            Button {
+                descriptionIsFocused = false
+                isPhotoPickerActive = true
+            } label: {
                 Label("Photos", systemImage: "photo.on.rectangle")
                     .frame(maxWidth: .infinity, minHeight: 48)
             }
             .buttonStyle(.tracalGlass)
             .disabled(model.isAnalyzing)
             .accessibilityIdentifier("log.photos")
+        }
+    }
+
+    @MainActor
+    private func applyLaunchModeIfNeeded() async {
+        guard !didApplyLaunchMode, let launchMode else { return }
+        didApplyLaunchMode = true
+
+        // Let the sheet finish presenting before opening another system surface.
+        try? await Task.sleep(for: .milliseconds(350))
+        guard !Task.isCancelled else { return }
+
+        switch launchMode {
+        case .text:
+            descriptionIsFocused = true
+        case .camera:
+            guard CameraCaptureView.isAvailable else {
+                descriptionIsFocused = true
+                return
+            }
+            pendingCameraPhoto = nil
+            isCameraActive = true
+        case .gallery:
+            isPhotoPickerActive = true
         }
     }
 

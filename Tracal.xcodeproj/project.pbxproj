@@ -18,12 +18,15 @@
 		264EDFEF28A402C37778ACC8 /* FoundationModelsMealParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D143B36EA13787CD1E3256 /* FoundationModelsMealParser.swift */; };
 		2D7AC818CF098A6EFF419D47 /* PendingAnalysis.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20B551A165E990D111BC413 /* PendingAnalysis.swift */; };
 		3431CC350F56D4E7C4EBA6CF /* EntryEditorSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E194C1D460F73E559E0C3153 /* EntryEditorSheet.swift */; };
+		3591FF967193D0578479EED9 /* TracalWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = F78BE4B5C19557C855247FF9 /* TracalWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		3BEC37C99F98904AD0161E01 /* MacroSummaryRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF61102E031D6F9E86C4DEB /* MacroSummaryRow.swift */; };
 		3E616C5D52A6C75DB9D902D3 /* SurfaceStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B71D97EA29EB9060FFE839B /* SurfaceStyles.swift */; };
 		4BDA31ED1BF42902EC8C981C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FEAAA7EBBBC6D53A9099E1 /* SettingsView.swift */; };
 		4D42A8D61226991C6CF61B52 /* TracalCoreMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7592BCA9CF4D256B3F6557F2 /* TracalCoreMapper.swift */; };
+		52726CC8EDDC9F99986A320E /* MealLogDeepLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B26FCCA2F4A9DEFE986528 /* MealLogDeepLink.swift */; };
 		5B3D5509009FA3B8214DA86B /* MealEntryRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDBC151C134A37220E5EA3B /* MealEntryRow.swift */; };
 		5C8C3EC288A25CC2A1CDE0D8 /* TracalAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361DC1904573254F9B99C03D /* TracalAppTests.swift */; };
+		5F6F53412ECED2A549B896B2 /* TracalWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528DDD07617D327461754BE5 /* TracalWidget.swift */; };
 		75395225CAD2BA706EF3EFDE /* DirectProviderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15999AE206476C61D4BBBB4 /* DirectProviderService.swift */; };
 		7668F317D1A3D63C4E7405F6 /* FoundationModelsPhotoAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8353C083263B02B73A4785 /* FoundationModelsPhotoAnalyzer.swift */; };
 		79944A245C96A32E4D9C1D3E /* MealAnalysisPersistenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99858A5AA4633D5A284FCAD3 /* MealAnalysisPersistenceTests.swift */; };
@@ -72,7 +75,28 @@
 			remoteGlobalIDString = D6E1666FFC5AD44E11BEF4B7;
 			remoteInfo = Tracal;
 		};
+		C673134E17E64BA23A91E5CE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E16DF28D0CF3F3C1BB1CBF5C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3D9637889A0D5E5D014FCDB8;
+			remoteInfo = TracalWidget;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A62855F2B63B8A59428B3747 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				3591FF967193D0578479EED9 /* TracalWidget.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0075865899C3DEBB42EA4D4E /* AnalyzedMealDraft+Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnalyzedMealDraft+Persistence.swift"; sourceTree = "<group>"; };
@@ -89,11 +113,13 @@
 		4424F8482A03BFAD6253B1C6 /* TracalCore */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TracalCore; path = Packages/TracalCore; sourceTree = SOURCE_ROOT; };
 		489AE4E76652D229A9E3E7D8 /* ProviderCredentialStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderCredentialStore.swift; sourceTree = "<group>"; };
 		4F7E9138852DE4A46BB29C7A /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		528DDD07617D327461754BE5 /* TracalWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TracalWidget.swift; sourceTree = "<group>"; };
 		5987291B3361C2A54D296DFF /* VisionNutritionLabelOCRService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionNutritionLabelOCRService.swift; sourceTree = "<group>"; };
 		5AF61102E031D6F9E86C4DEB /* MacroSummaryRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacroSummaryRow.swift; sourceTree = "<group>"; };
 		705CA63B8FE99BED9689301B /* TracalUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TracalUITests.swift; sourceTree = "<group>"; };
 		7592BCA9CF4D256B3F6557F2 /* TracalCoreMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TracalCoreMapper.swift; sourceTree = "<group>"; };
 		76D143B36EA13787CD1E3256 /* FoundationModelsMealParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationModelsMealParser.swift; sourceTree = "<group>"; };
+		78B26FCCA2F4A9DEFE986528 /* MealLogDeepLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealLogDeepLink.swift; sourceTree = "<group>"; };
 		7BAA31741C6F360CD5F2941E /* TracalUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = TracalUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E0765F7E75EF43451227A96 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		8419E0A2A7B4418F6E76F918 /* FoodItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodItem.swift; sourceTree = "<group>"; };
@@ -115,6 +141,7 @@
 		C544DA30E8BED06671E9C94D /* AIProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIProvider.swift; sourceTree = "<group>"; };
 		C7236C65AD8C1F0A9C50AEF8 /* GoalEditorSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalEditorSheet.swift; sourceTree = "<group>"; };
 		C755068B5AAABBC1288C80C3 /* PaidAppAccessController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaidAppAccessController.swift; sourceTree = "<group>"; };
+		CA551714B2B02A57CE1D3938 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		CCAA59600F7B0D6491B1B875 /* DateStrip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateStrip.swift; sourceTree = "<group>"; };
 		D2E21A97D6E7A32BD4CD867A /* DirectProviderClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectProviderClientTests.swift; sourceTree = "<group>"; };
 		D5EB61A2BDAA94B2D447B1A6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -125,6 +152,7 @@
 		E37A5D23C36A2BC184A2E9E3 /* TracalBackup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TracalBackup.swift; sourceTree = "<group>"; };
 		E948B4E6E10FA7E5CEA01502 /* LogComposerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogComposerView.swift; sourceTree = "<group>"; };
 		F20B551A165E990D111BC413 /* PendingAnalysis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingAnalysis.swift; sourceTree = "<group>"; };
+		F78BE4B5C19557C855247FF9 /* TracalWidget.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = TracalWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		F931B86F3E54B0FF7D5136B2 /* TracalTokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TracalTokens.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -236,6 +264,7 @@
 			isa = PBXGroup;
 			children = (
 				92F04F9E53C41EFDC4C540DA /* AppRootView.swift */,
+				78B26FCCA2F4A9DEFE986528 /* MealLogDeepLink.swift */,
 				40062768C92CDCE08092FC53 /* TracalApp.swift */,
 			);
 			path = App;
@@ -257,6 +286,7 @@
 				E1D1409E804A69D73C009601 /* Tracal.app */,
 				9FC74B4E03CF45CA7DB0643D /* TracalTests.xctest */,
 				7BAA31741C6F360CD5F2941E /* TracalUITests.xctest */,
+				F78BE4B5C19557C855247FF9 /* TracalWidget.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -286,6 +316,7 @@
 				D213C9017753662D10A8A44D /* Tracal */,
 				72E30AA468B65C6C715D5C89 /* TracalTests */,
 				BA344ED43FC0A7DA9AB490EA /* TracalUITests */,
+				C6D16FFCBC27734BB0558862 /* TracalWidget */,
 				870981FC916C306999320F8C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -317,6 +348,15 @@
 				705CA63B8FE99BED9689301B /* TracalUITests.swift */,
 			);
 			path = TracalUITests;
+			sourceTree = "<group>";
+		};
+		C6D16FFCBC27734BB0558862 /* TracalWidget */ = {
+			isa = PBXGroup;
+			children = (
+				CA551714B2B02A57CE1D3938 /* Info.plist */,
+				528DDD07617D327461754BE5 /* TracalWidget.swift */,
+			);
+			path = TracalWidget;
 			sourceTree = "<group>";
 		};
 		D213C9017753662D10A8A44D /* Tracal */ = {
@@ -352,6 +392,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		3D9637889A0D5E5D014FCDB8 /* TracalWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A74E76A24BB7C033BE45A1DA /* Build configuration list for PBXNativeTarget "TracalWidget" */;
+			buildPhases = (
+				2F8F3A21EBC211499B80818F /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TracalWidget;
+			packageProductDependencies = (
+			);
+			productName = TracalWidget;
+			productReference = F78BE4B5C19557C855247FF9 /* TracalWidget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		6B7C16D8A699632C4E820DC5 /* TracalUITests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B7978A39B6C4D7403EE717F0 /* Build configuration list for PBXNativeTarget "TracalUITests" */;
@@ -398,10 +455,12 @@
 				6B7366693210578EB2CBBAC6 /* Sources */,
 				827E277EA23CA6AD9292B06D /* Resources */,
 				2BAD087661514A1914B68278 /* Frameworks */,
+				A62855F2B63B8A59428B3747 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				D5E60DD64EB3909C2DD4E815 /* PBXTargetDependency */,
 			);
 			name = Tracal;
 			packageProductDependencies = (
@@ -420,6 +479,10 @@
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
+					3D9637889A0D5E5D014FCDB8 = {
+						DevelopmentTeam = 626Z5FFYFU;
+						ProvisioningStyle = Automatic;
+					};
 					6B7C16D8A699632C4E820DC5 = {
 						DevelopmentTeam = 626Z5FFYFU;
 						ProvisioningStyle = Automatic;
@@ -455,6 +518,7 @@
 				D6E1666FFC5AD44E11BEF4B7 /* Tracal */,
 				BF92727F1AE1BA6C6AC47A96 /* TracalTests */,
 				6B7C16D8A699632C4E820DC5 /* TracalUITests */,
+				3D9637889A0D5E5D014FCDB8 /* TracalWidget */,
 			);
 		};
 /* End PBXProject section */
@@ -480,6 +544,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		2F8F3A21EBC211499B80818F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5F6F53412ECED2A549B896B2 /* TracalWidget.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6B7366693210578EB2CBBAC6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -510,6 +582,7 @@
 				037680AF47D01E27B120E307 /* MealEntry.swift in Sources */,
 				5B3D5509009FA3B8214DA86B /* MealEntryRow.swift in Sources */,
 				24011BEE8CA22026FF72595F /* MealImagePipeline.swift in Sources */,
+				52726CC8EDDC9F99986A320E /* MealLogDeepLink.swift in Sources */,
 				ECDE623282994FCACF27E169 /* ModelPricingCatalog.swift in Sources */,
 				0AC23411FC690C84873DAEAB /* NutritionSummary.swift in Sources */,
 				E8B01530168F6CE27B7CA26E /* PaidAppAccessController.swift in Sources */,
@@ -556,6 +629,11 @@
 			isa = PBXTargetDependency;
 			target = D6E1666FFC5AD44E11BEF4B7 /* Tracal */;
 			targetProxy = 6B84467F54BFCBFCA1C0DFD5 /* PBXContainerItemProxy */;
+		};
+		D5E60DD64EB3909C2DD4E815 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3D9637889A0D5E5D014FCDB8 /* TracalWidget */;
+			targetProxy = C673134E17E64BA23A91E5CE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -634,7 +712,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = Config/Info.plist;
@@ -688,13 +766,59 @@
 			};
 			name = Release;
 		};
+		5BF03D4F991F18928412686C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CURRENT_PROJECT_VERSION = 13;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = TracalWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ajaypawriya.tracal.widget;
+				PRODUCT_NAME = TracalWidget;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		7FD519E234C4AAEDE2D3D514 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CURRENT_PROJECT_VERSION = 13;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = TracalWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ajaypawriya.tracal.widget;
+				PRODUCT_NAME = TracalWidget;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
 		888B1FCBB586CD0B01C62095 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = Config/Info.plist;
@@ -812,6 +936,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		A74E76A24BB7C033BE45A1DA /* Build configuration list for PBXNativeTarget "TracalWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7FD519E234C4AAEDE2D3D514 /* Debug */,
+				5BF03D4F991F18928412686C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
 		AD7F5ED00447E18AB87F65C7 /* Build configuration list for PBXNativeTarget "TracalTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

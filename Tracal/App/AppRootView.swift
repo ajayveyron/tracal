@@ -23,7 +23,7 @@ struct AppRootView: View {
 
     private var appContent: some View {
         TodayView(
-            onLog: { activeSheet = .log($0) },
+            onLog: { activeSheet = .log($0, mode: nil) },
             onEdit: { activeSheet = .edit($0) },
             onHistory: { activeSheet = .history },
             onSettings: { activeSheet = .settings }
@@ -31,8 +31,8 @@ struct AppRootView: View {
         .tint(TracalColor.accent)
         .sheet(item: $activeSheet) { sheet in
             switch sheet {
-            case let .log(date):
-                LogComposerView(initialDate: date) { draft in
+            case let .log(date, mode):
+                LogComposerView(initialDate: date, launchMode: mode) { draft in
                     let entry = MealEntry(confirmedDraft: draft)
                     modelContext.insert(entry)
                     do {
@@ -75,18 +75,38 @@ struct AppRootView: View {
         } message: {
             Text(persistenceError ?? "Please try again.")
         }
+        .onOpenURL { url in
+            guard let mode = MealLogLaunchMode(url: url) else { return }
+            openWidgetAction(mode)
+        }
+    }
+
+    private func openWidgetAction(_ mode: MealLogLaunchMode) {
+        guard activeSheet != nil else {
+            activeSheet = .log(.now, mode: mode)
+            return
+        }
+
+        // Replace any already-presented sheet so a widget tap always applies
+        // its requested text, camera, or gallery launch behavior.
+        activeSheet = nil
+        Task { @MainActor in
+            try? await Task.sleep(for: .milliseconds(250))
+            activeSheet = .log(.now, mode: mode)
+        }
     }
 }
 
 private enum AppSheet: Identifiable {
-    case log(Date)
+    case log(Date, mode: MealLogLaunchMode?)
     case edit(MealEntry)
     case history
     case settings
 
     var id: String {
         switch self {
-        case let .log(date): "log-\(date.timeIntervalSinceReferenceDate)"
+        case let .log(date, mode):
+            "log-\(date.timeIntervalSinceReferenceDate)-\(mode?.rawValue ?? "default")"
         case let .edit(entry): "edit-\(entry.id.uuidString)"
         case .history: "history"
         case .settings: "settings"

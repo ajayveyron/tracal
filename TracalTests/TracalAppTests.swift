@@ -8,6 +8,18 @@ final class TracalAppTests: XCTestCase {
         XCTAssertTrue(true)
     }
 
+    func testWidgetDeepLinksResolveEveryLaunchMode() throws {
+        for mode in MealLogLaunchMode.allCases {
+            XCTAssertEqual(MealLogLaunchMode(url: mode.deepLinkURL), mode)
+        }
+    }
+
+    func testUnrelatedDeepLinksAreIgnored() throws {
+        XCTAssertNil(MealLogLaunchMode(url: try XCTUnwrap(URL(string: "https://example.com/log/text"))))
+        XCTAssertNil(MealLogLaunchMode(url: try XCTUnwrap(URL(string: "tracal://history/text"))))
+        XCTAssertNil(MealLogLaunchMode(url: try XCTUnwrap(URL(string: "tracal://log/barcode"))))
+    }
+
     func testUnifiedComposerSendsTextOnlyAsTypedInput() async throws {
         let analyzer = RecordingMealAnalyzer()
         let model = LogComposerViewModel(loggedAt: .now, analyzer: analyzer)

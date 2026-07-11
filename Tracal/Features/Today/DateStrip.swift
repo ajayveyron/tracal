@@ -119,14 +119,16 @@ struct DateStrip: View {
         Button {
             page(by: dayOffset)
         } label: {
-            VStack(spacing: TracalSpace.xSmall) {
+            ZStack(alignment: .bottom) {
                 Image(systemName: systemImage)
                     .font(.body.weight(.semibold))
+                    .offset(y: 2)
 
                 Circle()
                     .fill(TracalColor.accentForeground)
                     .frame(width: 4, height: 4)
                     .opacity(pointsTowardToday ? 1 : 0)
+                    .padding(.bottom, 10)
             }
             .frame(maxWidth: .infinity, minHeight: 66)
         }

@@ -49,6 +49,20 @@
                ReferencedContainer = "container:Tracal.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "3D9637889A0D5E5D014FCDB8"
+               BuildableName = "TracalWidget.appex"
+               BlueprintName = "TracalWidget"
+               ReferencedContainer = "container:Tracal.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
