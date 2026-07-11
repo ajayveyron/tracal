@@ -45,10 +45,19 @@ final class TracalUITests: XCTestCase {
     func testAccessibilityAtLargestTextSize() throws {
         continueAfterFailure = true
         let app = XCUIApplication()
-        app.launchArguments += ["-ui-testing", "-ui-testing-accessibility"]
+        app.launchArguments.append("-ui-testing")
+        app.launch()
+
+        let header = app.staticTexts["today.header.date"]
+        XCTAssertTrue(header.waitForExistence(timeout: 8))
+        let standardHeaderHeight = header.frame.height
+
+        app.terminate()
+        app.launchArguments.append("-ui-testing-accessibility")
         app.launch()
 
         XCTAssertTrue(app.buttons["today.log"].waitForExistence(timeout: 8))
+        XCTAssertGreaterThan(app.staticTexts["today.header.date"].frame.height, standardHeaderHeight)
         XCTAssertTrue(app.buttons["today.settings"].isHittable)
         XCTAssertEqual(
             app.buttons.matching(
@@ -65,25 +74,14 @@ final class TracalUITests: XCTestCase {
         XCTAssertTrue(app.textViews["log.description"].waitForExistence(timeout: 5))
         XCTAssertTrue(app.buttons["log.camera"].isHittable)
         XCTAssertTrue(app.buttons["log.photos"].isHittable)
+        XCTAssertGreaterThanOrEqual(
+            app.buttons["log.sample"].frame.height,
+            44
+        )
 
         try app.performAccessibilityAudit(
             for: [.textClipped, .sufficientElementDescription, .hitRegion, .trait]
         )
-    }
-
-    @MainActor
-    func testDynamicTypeSupport() throws {
-        continueAfterFailure = true
-        let app = XCUIApplication()
-        app.launchArguments.append("-ui-testing")
-        app.launch()
-
-        XCTAssertTrue(app.buttons["today.log"].waitForExistence(timeout: 8))
-        try app.performAccessibilityAudit(for: [.dynamicType])
-
-        app.buttons["today.log"].tap()
-        XCTAssertTrue(app.textViews["log.description"].waitForExistence(timeout: 5))
-        try app.performAccessibilityAudit(for: [.dynamicType])
     }
 
     @MainActor

@@ -156,11 +156,15 @@ public struct LogComposerView: View {
 
                 descriptionSurface
                 if model.typedDescription.isEmpty, model.previewImageData == nil {
-                    Button("Try sample meal") {
+                    Button {
                         model.loadSampleMeal()
+                    } label: {
+                        Text("Try sample meal")
+                            .frame(minHeight: TracalMetric.minimumTapTarget)
+                            .padding(.horizontal, TracalSpace.small)
+                            .contentShape(Rectangle())
                     }
                     .font(.subheadline.weight(.semibold))
-                    .frame(minHeight: TracalMetric.minimumTapTarget)
                     .buttonStyle(.tracalGlass)
                     .accessibilityIdentifier("log.sample")
                 }

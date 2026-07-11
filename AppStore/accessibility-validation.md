@@ -21,7 +21,7 @@ Version 1.0 includes code support for VoiceOver, Dynamic Type, Reduce Motion, an
 
 - Analysis activity stops its repeating rotation and pulse.
 - Date selection and paging, month changes, calorie progress, and numeric transitions disable custom animation when Reduce Motion is enabled.
-- The accessibility UI-test configuration forces Reduce Motion on.
+- The accessibility UI-test configuration suppresses UIKit animation; the system Reduce Motion branches remain part of the physical-device checklist.
 
 ### Keyboard
 
@@ -34,7 +34,7 @@ Version 1.0 includes code support for VoiceOver, Dynamic Type, Reduce Motion, an
 ## Automated release checks
 
 - The `Public iOS validation` GitHub Actions workflow runs these checks on a `macos-26` runner with Xcode 26.6 for every push to `public`.
-- Run `TracalUITests/testAccessibilityAtLargestTextSize` on an iPhone simulator. It audits Dynamic Type, clipped text, element descriptions, hit regions, and traits on Today and Log Meal.
+- Run `TracalUITests/testAccessibilityAtLargestTextSize` on an iPhone simulator. It proves that the main heading grows from the standard size to `.accessibility5`, then audits clipped text, element descriptions, hit regions, and traits on Today and Log Meal at that largest size.
 - Run `TracalUITests/testGoalEditorKeyboardCanBeDismissed`.
 - Run the existing composer keyboard-layout test.
 
