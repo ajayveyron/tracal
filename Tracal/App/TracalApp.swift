@@ -6,6 +6,10 @@ import UIKit
 struct TracalApp: App {
     init() {
         UIScrollView.appearance().bounces = false
+
+        if ProcessInfo.processInfo.arguments.contains("-ui-testing-accessibility") {
+            UIView.setAnimationsEnabled(false)
+        }
     }
 
     private let modelContainer: ModelContainer = {
@@ -43,7 +47,6 @@ struct TracalApp: App {
         if ProcessInfo.processInfo.arguments.contains("-ui-testing-accessibility") {
             AppRootView()
                 .environment(\.dynamicTypeSize, .accessibility5)
-                .environment(\.accessibilityReduceMotion, true)
         } else {
             AppRootView()
         }

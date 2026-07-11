@@ -23,7 +23,7 @@ final class PaidAppAccessController: ObservableObject {
             let result = try await AppTransaction.shared
             switch result {
             case .verified(let transaction):
-                if let revokedAt = transaction.revocationDate {
+                if let revokedAt = Self.revocationDate(from: transaction.jsonRepresentation) {
                     defaults.set(true, forKey: Self.cachedRevocationKey)
                     state = .revoked(revokedAt)
                 } else {
@@ -48,6 +48,32 @@ final class PaidAppAccessController: ObservableObject {
 
     private func useCachedState() {
         state = defaults.bool(forKey: Self.cachedRevocationKey) ? .revoked(nil) : .active
+    }
+
+    /// Xcode 27 exposes `AppTransaction.revocationDate` directly. Tracal's
+    /// release toolchain is Xcode 26.6, so read the same field from StoreKit's
+    /// already-verified JSON payload until that SDK property is available.
+    private static func revocationDate(from payload: Data) -> Date? {
+        guard
+            let object = try? JSONSerialization.jsonObject(with: payload),
+            let dictionary = object as? [String: Any],
+            let rawValue = dictionary["revocationDate"]
+        else {
+            return nil
+        }
+
+        let milliseconds: Double?
+        switch rawValue {
+        case let number as NSNumber:
+            milliseconds = number.doubleValue
+        case let string as String:
+            milliseconds = Double(string)
+        default:
+            milliseconds = nil
+        }
+
+        guard let milliseconds, milliseconds > 0 else { return nil }
+        return Date(timeIntervalSince1970: milliseconds / 1_000)
     }
 }
 
