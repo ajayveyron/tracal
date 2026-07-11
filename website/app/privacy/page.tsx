@@ -37,7 +37,7 @@ export default function PrivacyPage() {
       <p>Tracal is intended for people aged 13 and older. Nutrition estimates are not medical advice. Do not submit information you are not authorized to share, including another person’s health information.</p>
 
       <h2>Contact</h2>
-      <p>For privacy questions, contact the developer through <a href="https://www.linkedin.com/in/ajay-pawriya/">Ajay Pawriya on LinkedIn</a>.</p>
+      <p>For privacy questions, email <a href="mailto:ajayveyron9@gmail.com">ajayveyron9@gmail.com</a> or contact <a href="https://www.linkedin.com/in/ajay-pawriya/">Ajay Pawriya on LinkedIn</a>.</p>
     </LegalPage>
   );
 }

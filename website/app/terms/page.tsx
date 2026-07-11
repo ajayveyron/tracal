@@ -31,7 +31,7 @@ export default function TermsPage() {
       <p>These terms may be updated when the app, law, or provider relationships change. The effective date on this page identifies the current version.</p>
 
       <h2>Contact</h2>
-      <p>Questions can be sent through <a href="https://www.linkedin.com/in/ajay-pawriya/">Ajay Pawriya on LinkedIn</a>.</p>
+      <p>Questions can be sent to <a href="mailto:ajayveyron9@gmail.com">ajayveyron9@gmail.com</a> or through <a href="https://www.linkedin.com/in/ajay-pawriya/">Ajay Pawriya on LinkedIn</a>.</p>
     </LegalPage>
   );
 }

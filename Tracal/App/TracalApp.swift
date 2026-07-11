@@ -32,9 +32,20 @@ struct TracalApp: App {
         WindowGroup {
             // Biometric app lock remains compiled out while direct camera
             // capture is reintroduced through UIKit's system picker only.
-            AppRootView()
+            appRoot
                 .preferredColorScheme(nil)
         }
         .modelContainer(modelContainer)
+    }
+
+    @ViewBuilder
+    private var appRoot: some View {
+        if ProcessInfo.processInfo.arguments.contains("-ui-testing-accessibility") {
+            AppRootView()
+                .environment(\.dynamicTypeSize, .accessibility5)
+                .environment(\.accessibilityReduceMotion, true)
+        } else {
+            AppRootView()
+        }
     }
 }

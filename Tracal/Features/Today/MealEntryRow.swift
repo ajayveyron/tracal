@@ -2,14 +2,39 @@ import SwiftUI
 import UIKit
 
 struct MealEntryRow: View {
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
     let entry: MealEntry
 
     var body: some View {
+        Group {
+            if dynamicTypeSize.isAccessibilitySize {
+                VStack(alignment: .leading, spacing: TracalSpace.small) {
+                    mealIdentity
+                    calorieValue
+                }
+            } else {
+                HStack(spacing: TracalSpace.medium) {
+                    mealIdentity
+                    Spacer(minLength: TracalSpace.small)
+                    calorieValue
+                }
+            }
+        }
+        .padding(TracalSpace.medium)
+        .tonalSurface()
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel("\(displayTitle), \(calorieText) kilocalories")
+        .accessibilityValue("Logged \(timeText), \(stateLabel)")
+        .accessibilityIdentifier("today.meal")
+    }
+
+    private var mealIdentity: some View {
         HStack(spacing: TracalSpace.medium) {
             MealThumbnail(entry: entry)
-
             VStack(alignment: .leading, spacing: TracalSpace.xSmall) {
-                Text(entry.title.isEmpty ? "Untitled meal" : entry.title)
+                Text(displayTitle)
                     .font(.body.weight(.semibold))
                     .foregroundStyle(TracalColor.textPrimary)
                     .lineLimit(2)
@@ -24,24 +49,33 @@ struct MealEntryRow: View {
                 .font(.caption)
                 .foregroundStyle(TracalColor.textSecondary)
             }
+        }
+    }
 
-            Spacer(minLength: TracalSpace.small)
-
+    private var calorieValue: some View {
+        HStack(alignment: .firstTextBaseline, spacing: TracalSpace.xSmall) {
             Text(entry.caloriesKcal, format: .number.precision(.fractionLength(0)))
                 .font(.body.weight(.bold))
                 .monospacedDigit()
                 .foregroundStyle(TracalColor.textPrimary)
-                .contentTransition(.numericText())
+                .contentTransition(reduceMotion ? .identity : .numericText())
 
             Text("kcal")
                 .font(.caption)
                 .foregroundStyle(TracalColor.textSecondary)
         }
-        .padding(TracalSpace.medium)
-        .tonalSurface()
-        .accessibilityElement(children: .combine)
-        .accessibilityIdentifier("today.meal")
-        .accessibilityValue(entry.analysisRouteRawValue)
+    }
+
+    private var displayTitle: String {
+        entry.title.isEmpty ? "Untitled meal" : entry.title
+    }
+
+    private var calorieText: String {
+        entry.caloriesKcal.formatted(.number.precision(.fractionLength(0)))
+    }
+
+    private var timeText: String {
+        entry.loggedAt.formatted(date: .omitted, time: .shortened)
     }
 
     private var stateLabel: String {

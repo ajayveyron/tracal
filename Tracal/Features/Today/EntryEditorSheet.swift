@@ -4,10 +4,13 @@ import UIKit
 
 struct EntryEditorSheet: View {
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @Environment(\.modelContext) private var modelContext
+    @ScaledMetric(relativeTo: .largeTitle) private var calorieFontSize: CGFloat = 44
     @Query(sort: \MealEntry.loggedAt, order: .reverse) private var allEntries: [MealEntry]
     @Bindable var entry: MealEntry
     @State private var showingDeleteConfirmation = false
+    @FocusState private var focusedField: EntryEditorField?
 
     var body: some View {
         NavigationStack {
@@ -16,6 +19,10 @@ struct EntryEditorSheet: View {
                     TextField("Meal name", text: $entry.title, axis: .vertical)
                         .font(.title2.bold())
                         .lineLimit(1...4)
+                        .focused($focusedField, equals: .title)
+                        .submitLabel(.done)
+                        .onSubmit { focusedField = nil }
+                        .accessibilityIdentifier("entry.title")
                         .padding(TracalSpace.medium)
                         .tonalSurface()
 
@@ -43,6 +50,7 @@ struct EntryEditorSheet: View {
                 .padding(TracalSpace.medium)
                 .frame(maxWidth: .infinity)
             }
+            .scrollDismissesKeyboard(.interactively)
             .background(TracalColor.backgroundPrimary.ignoresSafeArea())
             .safeAreaInset(edge: .bottom, spacing: 0) {
                 Button(action: save) {
@@ -51,6 +59,7 @@ struct EntryEditorSheet: View {
                         .frame(maxWidth: .infinity, minHeight: 58)
                 }
                     .buttonStyle(.tracalGlassProminent)
+                    .keyboardShortcut("s", modifiers: .command)
                     .disabled(entry.title.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
                     .accessibilityIdentifier("entry.save")
                     .padding(.horizontal, TracalSpace.medium)
@@ -66,6 +75,12 @@ struct EntryEditorSheet: View {
                         dismiss()
                     }
                     .tint(TracalColor.accent)
+                    .keyboardShortcut(.cancelAction)
+                }
+                ToolbarItemGroup(placement: .keyboard) {
+                    Spacer()
+                    Button("Done") { focusedField = nil }
+                        .accessibilityIdentifier("keyboard.done")
                 }
             }
             .confirmationDialog(
@@ -90,6 +105,7 @@ struct EntryEditorSheet: View {
         VStack(alignment: .leading, spacing: TracalSpace.small) {
             Text("Original input")
                 .font(.headline)
+                .accessibilityAddTraits(.isHeader)
 
             if let description = entry.originalDescription,
                !description.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
@@ -117,16 +133,22 @@ struct EntryEditorSheet: View {
         VStack(alignment: .leading, spacing: TracalSpace.large) {
             VStack(alignment: .leading, spacing: 2) {
                 Text(entry.caloriesKcal, format: .number.precision(.fractionLength(0)))
-                    .font(.system(size: 44, weight: .bold, design: .rounded))
+                    .font(.system(size: calorieFontSize, weight: .bold, design: .rounded))
                 Text("kcal")
                     .font(.subheadline)
                     .foregroundStyle(TracalColor.textSecondary)
             }
 
-            HStack(spacing: TracalSpace.small) {
-                StoredMacro(title: "Protein", value: entry.proteinG, color: TracalColor.protein)
-                StoredMacro(title: "Carbs", value: entry.carbohydrateG, color: TracalColor.carbohydrate)
-                StoredMacro(title: "Fat", value: entry.fatG, color: TracalColor.fat)
+            Group {
+                if dynamicTypeSize.isAccessibilitySize {
+                    VStack(spacing: TracalSpace.small) {
+                        storedMacros
+                    }
+                } else {
+                    HStack(spacing: TracalSpace.small) {
+                        storedMacros
+                    }
+                }
             }
         }
         .padding(TracalSpace.large)
@@ -166,6 +188,19 @@ struct EntryEditorSheet: View {
     }
 }
 
+private enum EntryEditorField: Hashable {
+    case title
+}
+
+private extension EntryEditorSheet {
+    @ViewBuilder
+    var storedMacros: some View {
+        StoredMacro(title: "Protein", value: entry.proteinG, color: TracalColor.protein)
+        StoredMacro(title: "Carbs", value: entry.carbohydrateG, color: TracalColor.carbohydrate)
+        StoredMacro(title: "Fat", value: entry.fatG, color: TracalColor.fat)
+    }
+}
+
 private struct StoredMacro: View {
     let title: String
     let value: Double
@@ -181,5 +216,8 @@ private struct StoredMacro: View {
                 .foregroundStyle(TracalColor.textSecondary)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(title)
+        .accessibilityValue("\(value.formatted(.number.precision(.fractionLength(0...1)))) grams")
     }
 }

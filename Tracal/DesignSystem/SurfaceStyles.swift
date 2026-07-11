@@ -108,6 +108,7 @@ struct EmptyStateView: View {
             Text(title)
                 .font(.headline)
                 .foregroundStyle(TracalColor.textPrimary)
+                .accessibilityAddTraits(.isHeader)
 
             Text(message)
                 .font(.subheadline)

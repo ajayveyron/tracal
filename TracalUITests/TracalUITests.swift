@@ -30,11 +30,67 @@ final class TracalUITests: XCTestCase {
         XCTAssertLessThanOrEqual(app.buttons["log.camera"].frame.maxY, keyboard.frame.minY + 1)
         XCTAssertLessThanOrEqual(app.buttons["log.photos"].frame.maxY, keyboard.frame.minY + 1)
         XCTAssertTrue(app.buttons["log.analyze"].isHittable)
+        let keyboardDone = app.buttons["keyboard.done"]
+        XCTAssertTrue(keyboardDone.exists)
+        keyboardDone.tap()
+        XCTAssertTrue(keyboard.waitForNonExistence(timeout: 3))
 
         let composer = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
         composer.name = "Unified description and photo composer"
         composer.lifetime = .keepAlways
         add(composer)
+    }
+
+    @MainActor
+    func testAccessibilityAtLargestTextSize() throws {
+        continueAfterFailure = true
+        let app = XCUIApplication()
+        app.launchArguments += ["-ui-testing", "-ui-testing-accessibility"]
+        app.launch()
+
+        XCTAssertTrue(app.buttons["today.log"].waitForExistence(timeout: 8))
+        XCTAssertTrue(app.buttons["today.settings"].isHittable)
+        XCTAssertEqual(
+            app.buttons.matching(
+                NSPredicate(format: "identifier BEGINSWITH %@", "today.date.")
+            ).count,
+            5
+        )
+
+        try app.performAccessibilityAudit(
+            for: [.dynamicType, .textClipped, .sufficientElementDescription, .hitRegion, .trait]
+        )
+
+        app.buttons["today.log"].tap()
+        XCTAssertTrue(app.textViews["log.description"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.buttons["log.camera"].isHittable)
+        XCTAssertTrue(app.buttons["log.photos"].isHittable)
+
+        try app.performAccessibilityAudit(
+            for: [.dynamicType, .textClipped, .sufficientElementDescription, .hitRegion, .trait]
+        )
+    }
+
+    @MainActor
+    func testGoalEditorKeyboardCanBeDismissed() throws {
+        let app = XCUIApplication()
+        app.launchArguments.append("-ui-testing")
+        app.launch()
+
+        XCTAssertTrue(app.buttons["today.settings"].waitForExistence(timeout: 8))
+        app.buttons["today.settings"].tap()
+        XCTAssertTrue(app.buttons["settings.goal"].waitForExistence(timeout: 5))
+        app.buttons["settings.goal"].tap()
+
+        let calories = app.textFields["goal.calories"]
+        XCTAssertTrue(calories.waitForExistence(timeout: 5))
+        calories.tap()
+        let keyboard = app.keyboards.firstMatch
+        XCTAssertTrue(keyboard.waitForExistence(timeout: 3))
+        let done = app.buttons["keyboard.done"]
+        XCTAssertTrue(done.exists)
+        done.tap()
+        XCTAssertTrue(keyboard.waitForNonExistence(timeout: 3))
     }
 
     @MainActor

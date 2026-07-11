@@ -1,0 +1,74 @@
+name: Public iOS validation
+
+on:
+  push:
+    branches:
+      - public
+  workflow_dispatch:
+
+concurrency:
+  group: public-ios-validation-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Xcode 26.6 tests
+    runs-on: macos-26
+    timeout-minutes: 45
+
+    steps:
+      - name: Check out public source
+        uses: actions/checkout@v4
+
+      - name: Select Xcode 26.6
+        shell: bash
+        run: |
+          set -euo pipefail
+          XCODE_PATH="$(find /Applications -maxdepth 1 -type d -name 'Xcode_26.6*.app' -print | sort -V | tail -1)"
+          if [[ -z "$XCODE_PATH" ]]; then
+            echo "Xcode 26.6 is not installed on this macos-26 runner."
+            find /Applications -maxdepth 1 -type d -name 'Xcode_26*.app' -print | sort -V
+            exit 1
+          fi
+          sudo xcode-select --switch "$XCODE_PATH/Contents/Developer"
+          xcodebuild -version
+
+      - name: Run TracalCore tests
+        run: ./scripts/test_core.sh
+
+      - name: Select an available iPhone simulator
+        id: simulator
+        shell: bash
+        run: |
+          set -euo pipefail
+          UDID="$(xcrun simctl list devices available --json | jq -r '[.devices[][] | select(.isAvailable == true and (.name | startswith("iPhone")))][0].udid')"
+          if [[ -z "$UDID" || "$UDID" == "null" ]]; then
+            echo "No available iPhone simulator was found."
+            xcrun simctl list devices available
+            exit 1
+          fi
+          echo "udid=$UDID" >> "$GITHUB_OUTPUT"
+
+      - name: Run app and accessibility tests
+        shell: bash
+        run: |
+          set -o pipefail
+          xcodebuild \
+            -project Tracal.xcodeproj \
+            -scheme Tracal \
+            -destination "platform=iOS Simulator,id=${{ steps.simulator.outputs.udid }}" \
+            -parallel-testing-enabled NO \
+            -resultBundlePath TestResults.xcresult \
+            test
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Tracal-test-results
+          path: TestResults.xcresult
+          if-no-files-found: ignore
+          retention-days: 7

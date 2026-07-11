@@ -24,6 +24,7 @@ struct GoalEditorSheet: View {
                     VStack(alignment: .leading, spacing: TracalSpace.small) {
                         Text("Daily goal")
                             .font(.largeTitle.bold())
+                            .accessibilityAddTraits(.isHeader)
                         Text("Calories are required. Macros can stay blank.")
                             .font(.subheadline)
                             .foregroundStyle(TracalColor.textSecondary)
@@ -77,11 +78,17 @@ struct GoalEditorSheet: View {
                 .padding(TracalSpace.large)
                 .frame(maxWidth: .infinity)
             }
+            .scrollDismissesKeyboard(.interactively)
             .background(TracalColor.backgroundPrimary.ignoresSafeArea())
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel") { dismiss() }
                         .tint(TracalColor.accent)
+                }
+                ToolbarItemGroup(placement: .keyboard) {
+                    Spacer()
+                    Button("Done") { focusedField = nil }
+                        .accessibilityIdentifier("keyboard.done")
                 }
             }
         }
@@ -140,9 +147,29 @@ private enum GoalField: Hashable {
     case protein
     case carbohydrate
     case fat
+
+    var next: GoalField? {
+        switch self {
+        case .calories: .protein
+        case .protein: .carbohydrate
+        case .carbohydrate: .fat
+        case .fat: nil
+        }
+    }
+
+    var accessibilityIdentifier: String {
+        switch self {
+        case .calories: "goal.calories"
+        case .protein: "goal.protein"
+        case .carbohydrate: "goal.carbohydrate"
+        case .fat: "goal.fat"
+        }
+    }
 }
 
 private struct GoalTextField: View {
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
     let title: String
     let unit: String
     @Binding var text: String
@@ -150,21 +177,47 @@ private struct GoalTextField: View {
     var focusedField: FocusState<GoalField?>.Binding
 
     var body: some View {
-        HStack(spacing: TracalSpace.medium) {
-            Text(title)
-                .font(.body.weight(.medium))
-            Spacer()
-            TextField("Optional", text: $text)
+        Group {
+            if dynamicTypeSize.isAccessibilitySize {
+                VStack(alignment: .leading, spacing: TracalSpace.small) {
+                    fieldTitle
+                    fieldInput
+                }
+            } else {
+                HStack(spacing: TracalSpace.medium) {
+                    fieldTitle
+                    Spacer()
+                    fieldInput
+                }
+            }
+        }
+        .padding(TracalSpace.medium)
+        .tonalSurface()
+    }
+
+    private var fieldTitle: some View {
+        Text(title)
+            .font(.body.weight(.medium))
+            .accessibilityHidden(true)
+    }
+
+    private var fieldInput: some View {
+        HStack(alignment: .firstTextBaseline, spacing: TracalSpace.small) {
+            TextField(field == .calories ? "Required" : "Optional", text: $text)
                 .keyboardType(.decimalPad)
                 .multilineTextAlignment(.trailing)
                 .font(.title3.weight(.semibold).monospacedDigit())
                 .focused(focusedField, equals: field)
-                .frame(minWidth: 84)
+                .submitLabel(field.next == nil ? .done : .next)
+                .onSubmit { focusedField.wrappedValue = field.next }
+                .accessibilityLabel(title)
+                .accessibilityHint(field == .calories ? "Required, in kilocalories" : "Optional, in grams")
+                .accessibilityIdentifier(field.accessibilityIdentifier)
+                .frame(minWidth: 84, maxWidth: dynamicTypeSize.isAccessibilitySize ? .infinity : 180)
             Text(unit)
                 .font(.subheadline)
                 .foregroundStyle(TracalColor.textSecondary)
+                .accessibilityHidden(true)
         }
-        .padding(TracalSpace.medium)
-        .tonalSurface()
     }
 }

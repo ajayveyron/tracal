@@ -15,7 +15,7 @@ export function SiteFooter() {
       <div className="footer-inner">
         <div>
           <Link className="brand" href="/">Tracal</Link>
-          <p>Private calorie tracking for iPhone. Nutrition estimates are not medical advice.</p>
+          <p>Private calorie tracking for iPhone. Nutrition estimates are not medical advice. <a href="mailto:ajayveyron9@gmail.com">Email support</a>.</p>
         </div>
         <nav className="footer-links" aria-label="Legal and support">
           {links.map(([label, href]) => <Link key={href} href={href}>{label}</Link>)}

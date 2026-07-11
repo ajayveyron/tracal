@@ -10,6 +10,7 @@
 - Regulated medical device: No
 - Price: US $19.99 one-time paid app; $8.99 launch price for the first 100 recorded buyers; Apple-localized elsewhere
 - Distribution: iPhone, iOS 26+, worldwide except the 27 European Union storefronts
+- Support email: ajayveyron9@gmail.com
 
 ## Description
 

@@ -37,6 +37,7 @@ struct SettingsView: View {
                 VStack(alignment: .leading, spacing: TracalSpace.xLarge) {
                     Text("Settings")
                         .font(.largeTitle.bold())
+                        .accessibilityAddTraits(.isHeader)
 
                     SettingsSection(title: "Goals") {
                         Button {
@@ -136,6 +137,19 @@ struct SettingsView: View {
                     }
 
                     SettingsSection(title: "Help") {
+                        Button {
+                            openURL(URL(string: "mailto:ajayveyron9@gmail.com?subject=Tracal%20Support")!)
+                        } label: {
+                            SettingsRow(
+                                title: "Email support",
+                                value: "ajayveyron9@gmail.com",
+                                systemImage: "envelope",
+                                showsChevron: true
+                            )
+                        }
+                        .buttonStyle(.plain)
+                        .accessibilityIdentifier("settings.support.email")
+
                         Button {
                             openURL(URL(string: "https://reportaproblem.apple.com")!)
                         } label: {
@@ -318,6 +332,7 @@ private struct ProviderSetupSheet: View {
     @State private var isTesting = false
     @State private var statusMessage: String?
     @State private var isError = false
+    @FocusState private var focusedField: ProviderField?
 
     var body: some View {
         NavigationStack {
@@ -326,6 +341,7 @@ private struct ProviderSetupSheet: View {
                     VStack(alignment: .leading, spacing: TracalSpace.small) {
                         Text(provider.displayName)
                             .font(.largeTitle.bold())
+                            .accessibilityAddTraits(.isHeader)
                         Text("Paste an existing \(provider.displayName) API key. The key stays in this iPhone's Keychain and is sent only to \(provider.displayName).")
                             .font(.subheadline)
                             .foregroundStyle(TracalColor.textSecondary)
@@ -338,6 +354,9 @@ private struct ProviderSetupSheet: View {
                         )
                         .textInputAutocapitalization(.never)
                         .autocorrectionDisabled()
+                        .focused($focusedField, equals: .apiKey)
+                        .submitLabel(.next)
+                        .onSubmit { focusedField = .model }
                         .accessibilityIdentifier("provider.key")
                         .padding(TracalSpace.medium)
                         .tonalSurface()
@@ -345,6 +364,9 @@ private struct ProviderSetupSheet: View {
                         TextField("Model", text: $model)
                             .textInputAutocapitalization(.never)
                             .autocorrectionDisabled()
+                            .focused($focusedField, equals: .model)
+                            .submitLabel(.done)
+                            .onSubmit { focusedField = nil }
                             .accessibilityIdentifier("provider.model")
                             .padding(TracalSpace.medium)
                             .tonalSurface()
@@ -361,6 +383,8 @@ private struct ProviderSetupSheet: View {
                         Text(statusMessage)
                             .font(.footnote)
                             .foregroundStyle(isError ? TracalColor.destructive : TracalColor.textSecondary)
+                            .accessibilityLabel("Connection status")
+                            .accessibilityValue(statusMessage)
                     }
 
                     Button(action: saveAndTest) {
@@ -395,6 +419,11 @@ private struct ProviderSetupSheet: View {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Done") { dismiss() }
                         .tint(TracalColor.accent)
+                }
+                ToolbarItemGroup(placement: .keyboard) {
+                    Spacer()
+                    Button("Done") { focusedField = nil }
+                        .accessibilityIdentifier("keyboard.done")
                 }
             }
             .onAppear {
@@ -464,6 +493,11 @@ private struct ProviderSetupSheet: View {
     }
 }
 
+private enum ProviderField: Hashable {
+    case apiKey
+    case model
+}
+
 private struct AIUsageDetailView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var modelContext
@@ -484,6 +518,7 @@ private struct AIUsageDetailView: View {
                 VStack(alignment: .leading, spacing: TracalSpace.xLarge) {
                     Text("AI usage")
                         .font(.largeTitle.bold())
+                        .accessibilityAddTraits(.isHeader)
 
                     UsageSummaryCard(title: "This month", records: monthRecords)
                     UsageSummaryCard(title: "All time on this iPhone", records: records)
@@ -592,6 +627,8 @@ private struct AIUsageDetailView: View {
 }
 
 private struct UsageSummaryCard: View {
+    @ScaledMetric(relativeTo: .largeTitle) private var costFontSize: CGFloat = 34
+
     let title: String
     let records: [AIUsageRecord]
 
@@ -600,7 +637,7 @@ private struct UsageSummaryCard: View {
             Text(title)
                 .font(.headline)
             Text(estimatedCost)
-                .font(.system(size: 34, weight: .bold, design: .rounded))
+                .font(.system(size: costFontSize, weight: .bold, design: .rounded))
             Text("Estimated API cost · \(tokenText(records))")
                 .font(.subheadline)
                 .foregroundStyle(TracalColor.textSecondary)
@@ -660,6 +697,7 @@ private struct SettingsSection<Content: View>: View {
                 .font(.headline)
                 .foregroundStyle(TracalColor.textPrimary)
                 .padding(.horizontal, TracalSpace.xSmall)
+                .accessibilityAddTraits(.isHeader)
             VStack(spacing: TracalSpace.medium) {
                 content
             }
@@ -677,7 +715,7 @@ private struct SettingsRow: View {
     var isDestructive = false
 
     var body: some View {
-        HStack(spacing: TracalSpace.medium) {
+        HStack(alignment: .top, spacing: TracalSpace.medium) {
             Image(systemName: systemImage)
                 .frame(width: 24)
                 .foregroundStyle(isDestructive ? TracalColor.destructive : TracalColor.accent)
@@ -705,5 +743,6 @@ private struct SettingsRow: View {
         }
         .frame(minHeight: TracalMetric.minimumTapTarget)
         .contentShape(.rect)
+        .accessibilityElement(children: .combine)
     }
 }

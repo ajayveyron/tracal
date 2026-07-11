@@ -1,6 +1,10 @@
 import SwiftUI
 
 struct CalorieSummaryCard: View {
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+    @ScaledMetric(relativeTo: .largeTitle) private var calorieFontSize: CGFloat = 52
+
     let summary: DailyNutritionSummary
     let onSetGoal: () -> Void
 
@@ -13,43 +17,23 @@ struct CalorieSummaryCard: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: TracalSpace.large) {
-            HStack(alignment: .center, spacing: TracalSpace.large) {
-                VStack(alignment: .leading, spacing: TracalSpace.xSmall) {
-                    Text(presentation.label)
-                        .font(.subheadline.weight(.medium))
-                        .foregroundStyle(TracalColor.textSecondary)
-
-                    HStack(alignment: .firstTextBaseline, spacing: TracalSpace.xSmall) {
-                        Text(presentation.value, format: .number.precision(.fractionLength(0)))
-                            .font(.system(size: 52, weight: .bold, design: .rounded))
-                            .monospacedDigit()
-                            .contentTransition(.numericText())
-                            .foregroundStyle(TracalColor.textPrimary)
-                        Text("kcal")
-                            .font(.subheadline.weight(.medium))
-                            .foregroundStyle(TracalColor.textSecondary)
+            Group {
+                if dynamicTypeSize.isAccessibilitySize {
+                    VStack(alignment: .leading, spacing: TracalSpace.medium) {
+                        calorieText
+                        progressGauge
+                    }
+                } else {
+                    HStack(alignment: .center, spacing: TracalSpace.large) {
+                        calorieText
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                        progressGauge
                     }
                 }
-                .frame(maxWidth: .infinity, alignment: .leading)
-
-                ZStack {
-                    Circle()
-                        .stroke(TracalColor.backgroundTertiary, lineWidth: 10)
-                    Circle()
-                        .trim(from: 0, to: summary.calorieProgress)
-                        .stroke(
-                            TracalColor.accent,
-                            style: StrokeStyle(lineWidth: 10, lineCap: .round)
-                        )
-                        .rotationEffect(.degrees(-90))
-                        .animation(.snappy(duration: 0.35), value: summary.calorieProgress)
-                    Image(systemName: "flame.fill")
-                        .font(.headline)
-                        .foregroundStyle(TracalColor.accent)
-                }
-                .frame(width: 88, height: 88)
-                .accessibilityHidden(true)
             }
+            .accessibilityElement(children: .ignore)
+            .accessibilityLabel(presentation.label)
+            .accessibilityValue(accessibilitySummary)
 
             if let target = summary.calorieTarget {
                 VStack(alignment: .leading, spacing: TracalSpace.small) {
@@ -69,6 +53,7 @@ struct CalorieSummaryCard: View {
                         .monospacedDigit()
                         .foregroundStyle(TracalColor.textSecondary)
                 }
+                .accessibilityHidden(true)
             } else {
                 Button(action: onSetGoal) {
                     Text("Set a daily goal")
@@ -80,6 +65,77 @@ struct CalorieSummaryCard: View {
         }
         .padding(TracalSpace.large)
         .tonalSurface()
-        .accessibilityElement(children: .combine)
+        .accessibilityElement(children: .contain)
+    }
+
+    private var calorieText: some View {
+        VStack(alignment: .leading, spacing: TracalSpace.xSmall) {
+            Text(presentation.label)
+                .font(.subheadline.weight(.medium))
+                .foregroundStyle(TracalColor.textSecondary)
+
+            Group {
+                if dynamicTypeSize.isAccessibilitySize {
+                    VStack(alignment: .leading, spacing: 0) {
+                        calorieNumber
+                        calorieUnit
+                    }
+                } else {
+                    HStack(alignment: .firstTextBaseline, spacing: TracalSpace.xSmall) {
+                        calorieNumber
+                        calorieUnit
+                    }
+                }
+            }
+        }
+    }
+
+    private var calorieNumber: some View {
+        Text(presentation.value, format: .number.precision(.fractionLength(0)))
+            .font(.system(size: calorieFontSize, weight: .bold, design: .rounded))
+            .monospacedDigit()
+            .contentTransition(reduceMotion ? .identity : .numericText())
+            .foregroundStyle(TracalColor.textPrimary)
+    }
+
+    private var calorieUnit: some View {
+        Text("kcal")
+            .font(.subheadline.weight(.medium))
+            .foregroundStyle(TracalColor.textSecondary)
+    }
+
+    private var progressGauge: some View {
+        ZStack {
+            Circle()
+                .stroke(TracalColor.backgroundTertiary, lineWidth: 10)
+            Circle()
+                .trim(from: 0, to: summary.calorieProgress)
+                .stroke(
+                    TracalColor.accent,
+                    style: StrokeStyle(lineWidth: 10, lineCap: .round)
+                )
+                .rotationEffect(.degrees(-90))
+                .animation(
+                    reduceMotion ? nil : .snappy(duration: 0.35),
+                    value: summary.calorieProgress
+                )
+            Image(systemName: "flame.fill")
+                .font(.headline)
+                .foregroundStyle(TracalColor.accent)
+        }
+        .frame(width: 88, height: 88)
+        .accessibilityHidden(true)
+    }
+
+    private var accessibilitySummary: String {
+        let value = presentation.value.formatted(.number.precision(.fractionLength(0)))
+        guard let target = summary.calorieTarget else {
+            return "\(value) kilocalories consumed"
+        }
+        let consumed = summary.consumed.caloriesKcal.formatted(
+            .number.precision(.fractionLength(0))
+        )
+        let targetText = target.formatted(.number.precision(.fractionLength(0)))
+        return "\(value) kilocalories. \(consumed) of \(targetText) consumed"
     }
 }

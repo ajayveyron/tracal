@@ -2,6 +2,7 @@ import SwiftData
 import SwiftUI
 
 struct TodayView: View {
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @Environment(\.modelContext) private var modelContext
     @Query(sort: \MealEntry.loggedAt, order: .reverse) private var allEntries: [MealEntry]
     @Query(sort: \DailyGoal.effectiveDate, order: .reverse) private var goals: [DailyGoal]
@@ -80,19 +81,42 @@ struct TodayView: View {
     }
 
     private var header: some View {
-        HStack(alignment: .center) {
-            VStack(alignment: .leading, spacing: 2) {
-                Text(dayTitle)
-                    .font(.largeTitle.bold())
-                    .foregroundStyle(TracalColor.textPrimary)
-                Text(selectedDate, format: .dateTime.month(.wide).day().year())
-                    .font(.subheadline)
-                    .foregroundStyle(TracalColor.textSecondary)
-                    .accessibilityIdentifier("today.header.date")
+        Group {
+            if dynamicTypeSize.isAccessibilitySize {
+                VStack(alignment: .leading, spacing: TracalSpace.small) {
+                    headerTitle
+                    headerActions
+                }
+            } else {
+                HStack(alignment: .center) {
+                    headerTitle
+                    Spacer()
+                    headerActions
+                }
             }
+        }
+        .frame(maxWidth: TracalMetric.contentMaxWidth)
+        .padding(.horizontal, TracalSpace.medium)
+        .padding(.vertical, TracalSpace.small)
+        .frame(maxWidth: .infinity)
+        .background(TracalColor.backgroundSecondary)
+    }
 
-            Spacer()
+    private var headerTitle: some View {
+        VStack(alignment: .leading, spacing: 2) {
+            Text(dayTitle)
+                .font(.largeTitle.bold())
+                .foregroundStyle(TracalColor.textPrimary)
+                .accessibilityAddTraits(.isHeader)
+            Text(selectedDate, format: .dateTime.month(.wide).day().year())
+                .font(.subheadline)
+                .foregroundStyle(TracalColor.textSecondary)
+                .accessibilityIdentifier("today.header.date")
+        }
+    }
 
+    private var headerActions: some View {
+        HStack(spacing: TracalSpace.small) {
             Button(action: onHistory) {
                 Image(systemName: "clock.arrow.circlepath")
                     .frame(width: TracalMetric.minimumTapTarget, height: TracalMetric.minimumTapTarget)
@@ -109,25 +133,23 @@ struct TodayView: View {
             .accessibilityLabel("Settings")
             .accessibilityIdentifier("today.settings")
         }
-        .frame(maxWidth: TracalMetric.contentMaxWidth)
-        .padding(.horizontal, TracalSpace.medium)
-        .padding(.vertical, TracalSpace.small)
-        .frame(maxWidth: .infinity)
-        .background(TracalColor.backgroundSecondary)
     }
 
     @ViewBuilder
     private var entriesSection: some View {
         VStack(alignment: .leading, spacing: TracalSpace.medium) {
-            HStack {
-                Text("Logged")
-                    .font(.title2.bold())
-                Spacer()
-                if !entries.isEmpty {
-                    Text(entries.count == 1 ? "1 entry" : "\(entries.count) entries")
-                        .font(.subheadline.monospacedDigit())
-                        .foregroundStyle(TracalColor.textSecondary)
-                        .accessibilityIdentifier("today.entry.count")
+            Group {
+                if dynamicTypeSize.isAccessibilitySize {
+                    VStack(alignment: .leading, spacing: TracalSpace.xSmall) {
+                        entriesTitle
+                        entryCount
+                    }
+                } else {
+                    HStack {
+                        entriesTitle
+                        Spacer()
+                        entryCount
+                    }
                 }
             }
 
@@ -139,35 +161,55 @@ struct TodayView: View {
                 )
             } else {
                 ForEach(entries) { entry in
-                    MealEntryRow(entry: entry)
-                        .contentShape(.rect)
-                        .onTapGesture { onEdit(entry) }
-                        .contextMenu {
-                            Button {
-                                onEdit(entry)
-                            } label: {
-                                Label("Edit", systemImage: "pencil")
-                            }
-
-                            Button {
-                                modelContext.insert(entry.duplicate(at: duplicateDate))
-                            } label: {
-                                Label("Duplicate", systemImage: "plus.square.on.square")
-                            }
-
-                            Button(role: .destructive) {
-                                entryToDelete = entry
-                            } label: {
-                                Label("Delete", systemImage: "trash")
-                            }
+                    Button {
+                        onEdit(entry)
+                    } label: {
+                        MealEntryRow(entry: entry)
+                    }
+                    .buttonStyle(.plain)
+                    .contextMenu {
+                        Button {
+                            onEdit(entry)
+                        } label: {
+                            Label("Edit", systemImage: "pencil")
                         }
-                        .accessibilityAction(named: "Edit") { onEdit(entry) }
-                        .accessibilityAction(named: "Duplicate") {
+
+                        Button {
                             modelContext.insert(entry.duplicate(at: duplicateDate))
+                        } label: {
+                            Label("Duplicate", systemImage: "plus.square.on.square")
                         }
-                        .accessibilityAction(named: "Delete") { entryToDelete = entry }
+
+                        Button(role: .destructive) {
+                            entryToDelete = entry
+                        } label: {
+                            Label("Delete", systemImage: "trash")
+                        }
+                    }
+                    .accessibilityAction(named: "Edit") { onEdit(entry) }
+                    .accessibilityAction(named: "Duplicate") {
+                        modelContext.insert(entry.duplicate(at: duplicateDate))
+                    }
+                    .accessibilityAction(named: "Delete") { entryToDelete = entry }
+                    .accessibilityHint("Opens meal details")
                 }
             }
+        }
+    }
+
+    private var entriesTitle: some View {
+        Text("Logged")
+            .font(.title2.bold())
+            .accessibilityAddTraits(.isHeader)
+    }
+
+    @ViewBuilder
+    private var entryCount: some View {
+        if !entries.isEmpty {
+            Text(entries.count == 1 ? "1 entry" : "\(entries.count) entries")
+                .font(.subheadline.monospacedDigit())
+                .foregroundStyle(TracalColor.textSecondary)
+                .accessibilityIdentifier("today.entry.count")
         }
     }
 

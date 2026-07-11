@@ -59,6 +59,7 @@ Do not add provider keys to schemes, xcconfig files, environment files, or test 
 - App Store metadata: [`AppStore/metadata.md`](AppStore/metadata.md)
 - App Review notes: [`AppStore/review-notes.md`](AppStore/review-notes.md)
 - Release checklist: [`AppStore/release-checklist.md`](AppStore/release-checklist.md)
+- Xcode Cloud release path: [`AppStore/xcode-cloud-release.md`](AppStore/xcode-cloud-release.md)
 - Next.js marketing, privacy, terms, API-key safety, provider billing, refund, and support site: [`website`](website)
 
 The public site is deployed at <https://tracal.vercel.app> through the Vercel project `tracal`.

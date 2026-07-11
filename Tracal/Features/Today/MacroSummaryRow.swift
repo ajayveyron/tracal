@@ -66,12 +66,14 @@ private struct MacroPresentation: Identifiable {
 }
 
 private struct MacroCard: View {
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
     let macro: MacroPresentation
     var compact = false
 
     var body: some View {
         VStack(alignment: .leading, spacing: TracalSpace.small) {
-            if compact {
+            if compact && !dynamicTypeSize.isAccessibilitySize {
                 HStack(alignment: .firstTextBaseline) {
                     label
                     Spacer()
@@ -96,7 +98,9 @@ private struct MacroCard: View {
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(TracalSpace.medium)
         .tonalSurface()
-        .accessibilityElement(children: .combine)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(macro.name)
+        .accessibilityValue(accessibilityValue)
     }
 
     private var label: some View {
@@ -116,5 +120,9 @@ private struct MacroCard: View {
         }
         .foregroundStyle(TracalColor.textPrimary)
     }
-}
 
+    private var accessibilityValue: String {
+        let value = macro.primaryValue.formatted(.number.precision(.fractionLength(0...1)))
+        return "\(value) grams \(macro.secondaryLabel)"
+    }
+}

@@ -26,7 +26,7 @@ export default function SupportPage() {
       <p>Settings lets you reset usage history, delete provider keys, or delete all local Tracal records. Provider-side request records must be managed through the provider account.</p>
 
       <h2>Contact</h2>
-      <p>Contact <a href="https://www.linkedin.com/in/ajay-pawriya/">Ajay Pawriya on LinkedIn</a> or open a public issue on <a href="https://github.com/ajayveyron/tracal/issues">GitHub</a>. Do not include an API key, meal photo, health information, or full provider request in a public issue.</p>
+      <p>Email <a href="mailto:ajayveyron9@gmail.com">ajayveyron9@gmail.com</a>. You can also contact <a href="https://www.linkedin.com/in/ajay-pawriya/">Ajay Pawriya on LinkedIn</a> or open a public issue on <a href="https://github.com/ajayveyron/tracal/issues">GitHub</a>. Do not include an API key, meal photo, health information, or full provider request in a public issue.</p>
     </LegalPage>
   );
 }

@@ -6,6 +6,7 @@ import UIKit
 public struct LogComposerView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @Environment(\.modelContext) private var modelContext
     @StateObject private var model: LogComposerViewModel
     @State private var selectedPhoto: PhotosPickerItem?
@@ -147,6 +148,7 @@ public struct LogComposerView: View {
                 VStack(alignment: .leading, spacing: TracalSpace.small) {
                     Text("Log meal")
                         .font(.largeTitle.bold())
+                        .accessibilityAddTraits(.isHeader)
                     Text("Describe it, add a photo, or both.")
                         .font(.subheadline)
                         .foregroundStyle(TracalColor.textSecondary)
@@ -210,6 +212,11 @@ public struct LogComposerView: View {
                 }
                 .tint(TracalColor.accent)
             }
+            ToolbarItemGroup(placement: .keyboard) {
+                Spacer()
+                Button("Done") { descriptionIsFocused = false }
+                    .accessibilityIdentifier("keyboard.done")
+            }
         }
     }
 
@@ -229,6 +236,7 @@ public struct LogComposerView: View {
 
                 TextEditor(text: $model.typedDescription)
                     .focused($descriptionIsFocused)
+                    .accessibilityLabel("Meal description")
                     .accessibilityIdentifier("log.description")
                     .scrollContentBackground(.hidden)
                     .frame(minHeight: 104)
@@ -283,30 +291,46 @@ public struct LogComposerView: View {
     }
 
     private var imageSourceButtons: some View {
-        HStack(spacing: TracalSpace.small) {
-            Button {
-                descriptionIsFocused = false
-                pendingCameraPhoto = nil
-                isCameraActive = true
-            } label: {
-                Label("Camera", systemImage: "camera")
-                    .frame(maxWidth: .infinity, minHeight: 48)
+        Group {
+            if dynamicTypeSize.isAccessibilitySize {
+                VStack(spacing: TracalSpace.small) {
+                    cameraButton
+                    photosButton
+                }
+            } else {
+                HStack(spacing: TracalSpace.small) {
+                    cameraButton
+                    photosButton
+                }
             }
-            .buttonStyle(.tracalGlass)
-            .disabled(!CameraCaptureView.isAvailable || model.isAnalyzing)
-            .accessibilityIdentifier("log.camera")
-
-            Button {
-                descriptionIsFocused = false
-                isPhotoPickerActive = true
-            } label: {
-                Label("Photos", systemImage: "photo.on.rectangle")
-                    .frame(maxWidth: .infinity, minHeight: 48)
-            }
-            .buttonStyle(.tracalGlass)
-            .disabled(model.isAnalyzing)
-            .accessibilityIdentifier("log.photos")
         }
+    }
+
+    private var cameraButton: some View {
+        Button {
+            descriptionIsFocused = false
+            pendingCameraPhoto = nil
+            isCameraActive = true
+        } label: {
+            Label("Camera", systemImage: "camera")
+                .frame(maxWidth: .infinity, minHeight: 48)
+        }
+        .buttonStyle(.tracalGlass)
+        .disabled(!CameraCaptureView.isAvailable || model.isAnalyzing)
+        .accessibilityIdentifier("log.camera")
+    }
+
+    private var photosButton: some View {
+        Button {
+            descriptionIsFocused = false
+            isPhotoPickerActive = true
+        } label: {
+            Label("Photos", systemImage: "photo.on.rectangle")
+                .frame(maxWidth: .infinity, minHeight: 48)
+        }
+        .buttonStyle(.tracalGlass)
+        .disabled(model.isAnalyzing)
+        .accessibilityIdentifier("log.photos")
     }
 
     @MainActor

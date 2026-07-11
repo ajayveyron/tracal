@@ -1,6 +1,9 @@
 import SwiftUI
 
 struct DateStrip: View {
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
     @Binding var selectedDate: Date
     let calendar: Calendar
 
@@ -31,6 +34,21 @@ struct DateStrip: View {
     }
 
     var body: some View {
+        Group {
+            if dynamicTypeSize.isAccessibilitySize {
+                ScrollView(.horizontal) {
+                    stripContent
+                }
+                .scrollIndicators(.hidden)
+            } else {
+                stripContent
+            }
+        }
+        .accessibilityElement(children: .contain)
+        .accessibilityHint("Use the previous and next buttons to show five more days")
+    }
+
+    private var stripContent: some View {
         HStack(spacing: TracalSpace.xSmall) {
             navigationButton(
                 systemImage: "chevron.left",
@@ -45,7 +63,7 @@ struct DateStrip: View {
                 let isToday = calendar.isDateInToday(date)
 
                 Button {
-                    withAnimation(.snappy(duration: 0.24)) {
+                    withAnimation(reduceMotion ? nil : .snappy(duration: 0.24)) {
                         selectedDate = calendar.startOfDay(for: date)
                     }
                 } label: {
@@ -70,7 +88,11 @@ struct DateStrip: View {
                             .frame(width: 4, height: 4)
                             .opacity(isToday ? 1 : 0)
                     }
-                    .frame(maxWidth: .infinity, minHeight: 66)
+                    .frame(
+                        minWidth: dynamicTypeSize.isAccessibilitySize ? 76 : nil,
+                        maxWidth: .infinity,
+                        minHeight: 66
+                    )
                     .contentShape(.rect)
                 }
                 .buttonStyle(
@@ -91,8 +113,6 @@ struct DateStrip: View {
                 accessibilityLabel: "Next dates"
             )
         }
-        .accessibilityElement(children: .contain)
-        .accessibilityHint("Swipe left or right to show five more days")
         .simultaneousGesture(
             DragGesture(minimumDistance: 24)
                 .onEnded { value in
@@ -103,7 +123,7 @@ struct DateStrip: View {
         )
         .onChange(of: selectedDate) { _, newDate in
             guard !contains(newDate) else { return }
-            withAnimation(.snappy(duration: 0.28)) {
+            withAnimation(reduceMotion ? nil : .snappy(duration: 0.28)) {
                 visibleAnchor = calendar.startOfDay(for: newDate)
             }
         }
@@ -130,7 +150,11 @@ struct DateStrip: View {
                     .opacity(pointsTowardToday ? 1 : 0)
                     .padding(.bottom, 10)
             }
-            .frame(maxWidth: .infinity, minHeight: 66)
+            .frame(
+                minWidth: dynamicTypeSize.isAccessibilitySize ? 58 : nil,
+                maxWidth: .infinity,
+                minHeight: 66
+            )
         }
         .buttonStyle(
             TracalGlassButtonStyle(role: pointsTowardToday ? .prominent : .standard)
@@ -156,7 +180,7 @@ struct DateStrip: View {
             to: selectedDate
         ) else { return }
 
-        withAnimation(.snappy(duration: 0.28)) {
+        withAnimation(reduceMotion ? nil : .snappy(duration: 0.28)) {
             visibleAnchor = calendar.startOfDay(for: newAnchor)
             selectedDate = calendar.startOfDay(for: newSelection)
         }
