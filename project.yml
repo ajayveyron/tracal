@@ -40,11 +40,18 @@ targets:
         CFBundleVersion: $(CURRENT_PROJECT_VERSION)
         LSRequiresIPhoneOS: true
         NSCameraUsageDescription: Tracal uses the camera only when you photograph food or a nutrition label for analysis.
-        TRACAL_GATEWAY_BASE_URL: $(TRACAL_GATEWAY_BASE_URL)
-        TRACAL_GATEWAY_DEVICE_TOKEN: $(TRACAL_GATEWAY_DEVICE_TOKEN)
         UILaunchScreen: {}
         UIRequiredDeviceCapabilities:
           - arm64
+        UTExportedTypeDeclarations:
+          - UTTypeIdentifier: com.ajaypawriya.tracal.backup
+            UTTypeDescription: Tracal Backup
+            UTTypeConformsTo:
+              - public.json
+            UTTypeTagSpecification:
+              public.filename-extension:
+                - tracalbackup
+              public.mime-type: application/vnd.tracal.backup+json
         UISupportedInterfaceOrientations:
           - UIInterfaceOrientationPortrait
         UISupportedInterfaceOrientations~ipad:

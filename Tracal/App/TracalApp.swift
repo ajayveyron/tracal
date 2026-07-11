@@ -9,15 +9,14 @@ struct TracalApp: App {
     }
 
     private let modelContainer: ModelContainer = {
-        // Personal production builds can ship URL + token via Local.xcconfig.
-        // Seed once so Settings pairing is optional.
-        GatewayAutoProvision.applyIfNeeded()
+        ProviderCredentialStore().prepareFreshInstallation()
 
         let schema = Schema([
             DailyGoal.self,
             MealEntry.self,
             FoodItem.self,
-            PendingAnalysis.self
+            PendingAnalysis.self,
+            AIUsageRecord.self,
         ])
         let isUITesting = ProcessInfo.processInfo.arguments.contains("-ui-testing")
         let configuration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: isUITesting)

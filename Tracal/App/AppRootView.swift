@@ -5,8 +5,23 @@ struct AppRootView: View {
     @Environment(\.modelContext) private var modelContext
     @State private var activeSheet: AppSheet?
     @State private var persistenceError: String?
+    @StateObject private var accessController = PaidAppAccessController()
 
     var body: some View {
+        Group {
+            switch accessController.state {
+            case .revoked:
+                RevokedAppAccessView(controller: accessController)
+            case .unknown, .active:
+                appContent
+            }
+        }
+        .task {
+            await accessController.refresh()
+        }
+    }
+
+    private var appContent: some View {
         TodayView(
             onLog: { activeSheet = .log($0) },
             onEdit: { activeSheet = .edit($0) },

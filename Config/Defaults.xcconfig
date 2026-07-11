@@ -1,7 +1,2 @@
-// Committed defaults. Optional personal overrides live in Local.xcconfig
-// (gitignored). `#include?` is a no-op when that file is missing.
-
-TRACAL_GATEWAY_BASE_URL =
-TRACAL_GATEWAY_DEVICE_TOKEN =
-
-#include? "Local.xcconfig"
+// Public builds contain no provider key, gateway address, or bearer token.
+// Users connect their own provider from Settings; secrets stay in Keychain.

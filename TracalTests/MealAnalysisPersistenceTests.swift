@@ -5,7 +5,7 @@ import XCTest
 @MainActor
 final class MealAnalysisPersistenceTests: XCTestCase {
     func testRouterCapturesWrittenTextAndPhotoHintCentrally() async throws {
-        let router = DefaultMealAnalysisRouter(gateway: PersistenceGatewayAnalyzer())
+        let router = DefaultMealAnalysisRouter(provider: PersistenceProviderAnalyzer())
         let typedText = "Paneer wrap with extra mint chutney"
         let typedDraft = try await router.analyze(
             MealAnalysisRequest(
@@ -132,7 +132,7 @@ final class MealAnalysisPersistenceTests: XCTestCase {
     }
 }
 
-private actor PersistenceGatewayAnalyzer: VertexGatewayAnalyzing {
+private actor PersistenceProviderAnalyzer: DirectProviderAnalyzing {
     func analyze(_ request: MealAnalysisRequest) async throws -> AnalyzedMealDraft {
         AnalyzedMealDraft(
             id: request.id,

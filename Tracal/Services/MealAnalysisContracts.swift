@@ -179,6 +179,9 @@ public enum MealAnalysisRoute: String, Codable, Hashable, Sendable {
     case onDeviceFoundationModel
     case onDeviceMultimodal
     case visionNutritionLabel
+    case openAI
+    case anthropic
+    case gemini
     case vertexFallback
 }
 
@@ -270,21 +273,11 @@ public enum MealAnalysisError: Error, Hashable, Sendable {
     case noNutritionDetected
     case localModelUnavailable(LocalModelAvailability)
     case invalidModelResponse(String)
-    case vertexNotConfigured
-    case gatewayUnavailable(VertexGatewayFailure)
+    case providerNotConfigured(AIProvider)
+    case providerConsentRequired(AIProvider)
+    case providerUnavailable(AIProvider, ProviderFailure)
     case imageStorageFailed
     case cancelled
-}
-
-public enum VertexGatewayFailure: Hashable, Sendable {
-    case notConfigured
-    case invalidEndpoint
-    case authorizationUnavailable
-    case networkUnavailable
-    case rejected(statusCode: Int)
-    case requestTooLarge
-    case responseTooLarge
-    case malformedResponse
 }
 
 extension MealAnalysisError: LocalizedError {
@@ -302,26 +295,24 @@ extension MealAnalysisError: LocalizedError {
             return availability.userMessage
         case .invalidModelResponse:
             return "The meal estimate was incomplete. Try again."
-        case .vertexNotConfigured:
-            return "The private meal-analysis gateway is not configured yet."
-        case .gatewayUnavailable(let reason):
+        case .providerNotConfigured(let provider):
+            return "Connect \(provider.displayName) in Settings before using cloud analysis."
+        case .providerConsentRequired(let provider):
+            return "Review and allow \(provider.displayName) data sharing in Settings first."
+        case .providerUnavailable(let provider, let reason):
             switch reason {
-            case .notConfigured:
-                return "The private meal-analysis gateway is not configured yet."
-            case .invalidEndpoint:
-                return "The private meal-analysis gateway address is invalid."
-            case .authorizationUnavailable:
-                return "Private meal analysis needs authorization."
-            case .networkUnavailable:
-                return "The private meal-analysis gateway could not be reached."
-            case .rejected(let statusCode):
-                return statusCode == 429
-                    ? "The private meal-analysis limit was reached."
-                    : "The private meal-analysis request was rejected."
+            case .invalidCredential:
+                return "The saved \(provider.displayName) API key was rejected."
+            case .quotaExceeded:
+                return "The \(provider.displayName) usage limit or balance was reached."
+            case .requestRejected:
+                return "\(provider.displayName) rejected this analysis request."
             case .requestTooLarge:
                 return "The meal photo is too large to analyze."
-            case .responseTooLarge, .malformedResponse:
-                return "The private meal-analysis response could not be used."
+            case .responseTooLarge, .malformedResponse, .truncated:
+                return "\(provider.displayName) returned an incomplete meal estimate."
+            case .networkUnavailable:
+                return "\(provider.displayName) could not be reached."
             }
         case .imageStorageFailed:
             return "The protected photo draft could not be saved."
@@ -332,7 +323,9 @@ extension MealAnalysisError: LocalizedError {
 
     public var recoverySuggestion: String? {
         switch self {
-        case .vertexNotConfigured, .gatewayUnavailable, .invalidModelResponse, .localModelUnavailable:
+        case .providerNotConfigured, .providerConsentRequired:
+            return "Open Settings, choose a provider, and connect a dedicated API key."
+        case .providerUnavailable, .invalidModelResponse, .localModelUnavailable:
             return "Check your connection and try again. Your inputs are still here."
         case .unreadableImage, .noNutritionDetected:
             return "Retake the photo in brighter, even light."

@@ -112,8 +112,40 @@ public actor ProtectedMealImageStore {
         try? fileManager.removeItem(at: url)
     }
 
+    public func data(path: String?) -> Data? {
+        guard let url = resolvedURL(path: path) else { return nil }
+        return try? Data(contentsOf: url, options: [.mappedIfSafe])
+    }
+
+    public func restore(_ data: Data, id: UUID) throws -> String {
+        guard !data.isEmpty else { throw MealAnalysisError.imageStorageFailed }
+        do {
+            try fileManager.createDirectory(
+                at: directoryURL,
+                withIntermediateDirectories: true,
+                attributes: [.protectionKey: FileProtectionType.complete]
+            )
+            let url = directoryURL.appendingPathComponent("\(id.uuidString).jpg")
+            try data.write(to: url, options: [.atomic, .completeFileProtection])
+            return relativePath(for: url)
+        } catch {
+            throw MealAnalysisError.imageStorageFailed
+        }
+    }
+
     public func removeAll() {
         guard fileManager.fileExists(atPath: directoryURL.path) else { return }
         try? fileManager.removeItem(at: directoryURL)
+    }
+
+
+    private func resolvedURL(path: String?) -> URL? {
+        guard let path, !path.isEmpty else { return nil }
+        let url = path.hasPrefix("/")
+            ? URL(fileURLWithPath: path).standardizedFileURL
+            : baseDirectoryURL.appendingPathComponent(path).standardizedFileURL
+        let protectedDirectory = directoryURL.standardizedFileURL.path
+        guard url.path.hasPrefix(protectedDirectory + "/") else { return nil }
+        return url
     }
 }

@@ -18,12 +18,6 @@ plutil -lint Config/Info.plist Tracal/Resources/PrivacyInfo.xcprivacy
 
 scripts/test_core.sh
 
-if [[ -d "vertex-meal-gateway/node_modules" ]]; then
-  (cd vertex-meal-gateway && npm test)
-else
-  print "Skipped gateway tests: run npm install in vertex-meal-gateway first."
-fi
-
 xcodegen generate
 
 if xcrun --sdk iphoneos --show-sdk-path >/dev/null 2>&1; then

@@ -32,6 +32,9 @@ enum StoredMealAnalysisRoute: String, Codable, CaseIterable {
     case appleIntelligence
     case appleIntelligencePhoto
     case visionLabel
+    case openAI
+    case anthropic
+    case gemini
     case vertexFallback
 }
 

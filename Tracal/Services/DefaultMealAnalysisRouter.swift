@@ -1,25 +1,31 @@
 import Foundation
 
-/// Keeps deterministic facts local, then uses the private gateway as the
-/// primary estimator. Foundation Models remains a text-only offline fallback;
-/// the iOS 27 beta image-attachment path is excluded after a physical-device
-/// code-signing crash.
+/// Keeps deterministic facts local, then calls only the provider explicitly
+/// selected by the user. Foundation Models remains a text-only offline
+/// fallback; no request silently crosses to another cloud provider.
 public actor DefaultMealAnalysisRouter: MealAnalysisRouting {
     private let deterministic: DeterministicMealParser
     private let foundationModels: FoundationModelsMealParser
     private let vision: VisionNutritionLabelOCRService
-    private let gateway: any VertexGatewayAnalyzing
+    private let provider: any DirectProviderAnalyzing
 
-    public init(
+    public init() {
+        deterministic = DeterministicMealParser()
+        foundationModels = FoundationModelsMealParser()
+        vision = VisionNutritionLabelOCRService()
+        provider = DirectProviderService()
+    }
+
+    init(
         deterministic: DeterministicMealParser = DeterministicMealParser(),
         foundationModels: FoundationModelsMealParser = FoundationModelsMealParser(),
         vision: VisionNutritionLabelOCRService = VisionNutritionLabelOCRService(),
-        gateway: any VertexGatewayAnalyzing = VertexGatewayClient()
+        provider: any DirectProviderAnalyzing = DirectProviderService()
     ) {
         self.deterministic = deterministic
         self.foundationModels = foundationModels
         self.vision = vision
-        self.gateway = gateway
+        self.provider = provider
     }
 
     public func localModelAvailability() async -> LocalModelAvailability {
@@ -56,15 +62,18 @@ public actor DefaultMealAnalysisRouter: MealAnalysisRouting {
             return explicitDraft
         }
 
-        let gatewayFailure: MealAnalysisError
+        let providerFailure: MealAnalysisError
         do {
-            return try await gateway.analyze(request)
+            return try await provider.analyze(request)
         } catch is CancellationError {
             throw MealAnalysisError.cancelled
         } catch let error as MealAnalysisError {
-            gatewayFailure = error
+            providerFailure = error
         } catch {
-            gatewayFailure = .gatewayUnavailable(.networkUnavailable)
+            providerFailure = .providerUnavailable(
+                AIProviderPreferences().activeProvider,
+                .networkUnavailable
+            )
         }
 
         do {
@@ -76,7 +85,7 @@ public actor DefaultMealAnalysisRouter: MealAnalysisRouting {
         } catch is CancellationError {
             throw MealAnalysisError.cancelled
         } catch {
-            throw gatewayFailure
+            throw providerFailure
         }
     }
 
@@ -97,17 +106,20 @@ public actor DefaultMealAnalysisRouter: MealAnalysisRouting {
             throw MealAnalysisError.cancelled
         } catch {
             // A normal meal photo often has no useful text. Continue to the
-            // multimodal route without treating failed OCR as a user error.
+            // selected multimodal provider without treating failed OCR as a user error.
         }
 
         do {
-            return try await gateway.analyze(request)
+            return try await provider.analyze(request)
         } catch is CancellationError {
             throw MealAnalysisError.cancelled
         } catch let error as MealAnalysisError {
             throw error
         } catch {
-            throw MealAnalysisError.gatewayUnavailable(.networkUnavailable)
+            throw MealAnalysisError.providerUnavailable(
+                AIProviderPreferences().activeProvider,
+                .networkUnavailable
+            )
         }
     }
 

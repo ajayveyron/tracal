@@ -1,10 +1,12 @@
 import PhotosUI
+import SwiftData
 import SwiftUI
 import UIKit
 
 public struct LogComposerView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(\.modelContext) private var modelContext
     @StateObject private var model: LogComposerViewModel
     @State private var selectedPhoto: PhotosPickerItem?
     @State private var isCameraActive = false
@@ -21,7 +23,8 @@ public struct LogComposerView: View {
         _model = StateObject(
             wrappedValue: LogComposerViewModel(
                 loggedAt: initialDate,
-                analyzer: DefaultMealAnalysisRouter()
+                analyzer: DefaultMealAnalysisRouter(),
+                allowsAnalyzerReplacement: true
             )
         )
         self.onSave = onSave
@@ -76,6 +79,12 @@ public struct LogComposerView: View {
             .ignoresSafeArea()
         }
         .task {
+            let recorder = SwiftDataAIUsageRecorder(container: modelContext.container)
+            model.configureAnalyzer(
+                DefaultMealAnalysisRouter(
+                    provider: DirectProviderService(usageRecorder: recorder)
+                )
+            )
             model.loadLocalModelAvailability()
             model.ingestUITestFixtureIfPresent()
         }
@@ -114,6 +123,14 @@ public struct LogComposerView: View {
                 }
 
                 descriptionSurface
+                if model.typedDescription.isEmpty, model.previewImageData == nil {
+                    Button("Try sample meal") {
+                        model.loadSampleMeal()
+                    }
+                    .font(.subheadline.weight(.semibold))
+                    .buttonStyle(.tracalGlass)
+                    .accessibilityIdentifier("log.sample")
+                }
                 if model.previewImageData != nil {
                     photoPreviewSurface
                 }

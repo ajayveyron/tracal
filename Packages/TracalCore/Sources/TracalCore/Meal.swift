@@ -16,6 +16,9 @@ public enum AnalysisRoute: String, Codable, CaseIterable, Hashable, Sendable {
     case onDeviceText
     case visionOCR
     case onDeviceMultimodal
+    case openAI
+    case anthropic
+    case gemini
     case vertexFallback
 }
 

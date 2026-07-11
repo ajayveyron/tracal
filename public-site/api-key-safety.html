@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Tracal API-key safety</title>
+  <style>:root{color-scheme:light dark;--bg:#f3f1ea;--surface:#e8e9e2;--text:#182019;--muted:#5f675f;--accent:#2f6b48}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 -apple-system,BlinkMacSystemFont,"SF Pro Text",sans-serif}main{max-width:760px;margin:auto;padding:64px 24px}h1{font-size:clamp(2.2rem,7vw,4.5rem);line-height:1;margin:0 0 36px}h2{margin:0 0 8px}section{background:var(--surface);padding:24px;margin:12px 0;border-radius:24px}p{margin:0;color:var(--muted)}a{color:var(--accent)}@media(prefers-color-scheme:dark){:root{--bg:#111512;--surface:#1b211c;--text:#edf1ed;--muted:#adb7ae;--accent:#89c99e}}</style>
+</head><body><main>
+  <h1>Use a key made for Tracal.</h1>
+  <section><h2>Create a dedicated key</h2><p>Do not reuse a key from another app or project. Apply the provider’s lowest practical permissions, spending limit, and usage alerts.</p></section>
+  <section><h2>Stored on this iPhone</h2><p>Tracal stores keys with WhenUnlockedThisDeviceOnly Keychain protection. Keys are excluded from SwiftData, local backups, UserDefaults, diagnostics, and the app bundle.</p></section>
+  <section><h2>Sent only to the provider</h2><p>The selected key is attached only to requests sent over HTTPS to that provider’s hardcoded official API origin. Tracal has no routing intermediary or backend.</p></section>
+  <section><h2>Rotate when needed</h2><p>Delete a key in Tracal Settings and revoke it in the provider console if the phone, key, or provider account may be compromised. A jailbroken or otherwise compromised device can weaken platform protection.</p></section>
+</main></body></html>

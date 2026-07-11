@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>$(TRACAL_DISPLAY_NAME)</string>
+	<string>Tracal</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -24,10 +24,6 @@
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>Tracal uses the camera only when you photograph food or a nutrition label for analysis.</string>
-	<key>TRACAL_GATEWAY_BASE_URL</key>
-	<string>$(TRACAL_GATEWAY_BASE_URL)</string>
-	<key>TRACAL_GATEWAY_DEVICE_TOKEN</key>
-	<string>$(TRACAL_GATEWAY_DEVICE_TOKEN)</string>
 	<key>UILaunchScreen</key>
 	<dict/>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -42,6 +38,28 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+	</array>
+	<key>UTExportedTypeDeclarations</key>
+	<array>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.json</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Tracal Backup</string>
+			<key>UTTypeIdentifier</key>
+			<string>com.ajaypawriya.tracal.backup</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>tracalbackup</string>
+				</array>
+				<key>public.mime-type</key>
+				<string>application/vnd.tracal.backup+json</string>
+			</dict>
+		</dict>
 	</array>
 </dict>
 </plist>

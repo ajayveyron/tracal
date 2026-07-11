@@ -14,7 +14,8 @@ final class LogComposerViewModel: ObservableObject {
 
     let loggedAt: Date
 
-    private let analyzer: any MealAnalysisRouting
+    private var analyzer: any MealAnalysisRouting
+    private let allowsAnalyzerReplacement: Bool
     private let imageSanitizer: MealImageSanitizer
     private let imageStore: ProtectedMealImageStore
     private var analysisTask: Task<Void, Never>?
@@ -27,13 +28,20 @@ final class LogComposerViewModel: ObservableObject {
     init(
         loggedAt: Date,
         analyzer: any MealAnalysisRouting,
+        allowsAnalyzerReplacement: Bool = false,
         imageSanitizer: MealImageSanitizer = MealImageSanitizer(),
         imageStore: ProtectedMealImageStore = ProtectedMealImageStore()
     ) {
         self.loggedAt = loggedAt
         self.analyzer = analyzer
+        self.allowsAnalyzerReplacement = allowsAnalyzerReplacement
         self.imageSanitizer = imageSanitizer
         self.imageStore = imageStore
+    }
+
+    func configureAnalyzer(_ analyzer: any MealAnalysisRouting) {
+        guard allowsAnalyzerReplacement, !isAnalyzing else { return }
+        self.analyzer = analyzer
     }
 
     deinit {
@@ -64,6 +72,60 @@ final class LogComposerViewModel: ObservableObject {
         }
         ingestPhotoData(data, source: .photoLibrary)
         #endif
+    }
+
+    func loadSampleMeal() {
+        guard !isAnalyzing else { return }
+        draft = AnalyzedMealDraft(
+            id: UUID(),
+            loggedAt: loggedAt,
+            title: "Eggs, toast, and chai",
+            inputSource: .typedText,
+            analysisRoute: .deterministic,
+            items: [
+                AnalyzedFoodItem(
+                    name: "Two eggs",
+                    quantity: 2,
+                    unit: "eggs",
+                    estimatedGrams: 100,
+                    nutrition: NutritionValues(
+                        caloriesKcal: 144,
+                        proteinGrams: 12.6,
+                        carbohydrateGrams: 0.8,
+                        fatGrams: 9.6
+                    )
+                ),
+                AnalyzedFoodItem(
+                    name: "Toast",
+                    quantity: 2,
+                    unit: "slices",
+                    estimatedGrams: 60,
+                    nutrition: NutritionValues(
+                        caloriesKcal: 160,
+                        proteinGrams: 6,
+                        carbohydrateGrams: 28,
+                        fatGrams: 2
+                    )
+                ),
+                AnalyzedFoodItem(
+                    name: "Milk chai",
+                    quantity: 1,
+                    unit: "cup",
+                    estimatedGrams: 180,
+                    nutrition: NutritionValues(
+                        caloriesKcal: 110,
+                        proteinGrams: 3,
+                        carbohydrateGrams: 16,
+                        fatGrams: 4
+                    )
+                ),
+            ],
+            needsReview: true,
+            reviewReason: "Bundled sample for reviewing Tracal without a provider key.",
+            promptVersion: "tracal-sample-v1",
+            modelVersion: "bundled-sample",
+            originalDescription: "Two eggs, toast, and a chai"
+        )
     }
 
     func analyzeMeal() {

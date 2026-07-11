@@ -67,6 +67,9 @@ private extension StoredMealAnalysisRoute {
         case .onDeviceFoundationModel: self = .appleIntelligence
         case .onDeviceMultimodal: self = .appleIntelligencePhoto
         case .visionNutritionLabel: self = .visionLabel
+        case .openAI: self = .openAI
+        case .anthropic: self = .anthropic
+        case .gemini: self = .gemini
         case .vertexFallback: self = .vertexFallback
         }
     }

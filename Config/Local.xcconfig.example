@@ -1,5 +1,0 @@
-// Copy to Config/Local.xcconfig (gitignored), then rebuild.
-// IMPORTANT: write URLs as https:/$()/host — plain https:// is truncated by xcconfig comments.
-
-TRACAL_GATEWAY_BASE_URL = https:/$()/your-deployment.vercel.app
-TRACAL_GATEWAY_DEVICE_TOKEN = paste-raw-token-from-setup-script
