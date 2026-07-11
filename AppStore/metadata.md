@@ -8,8 +8,8 @@
 - Secondary category: Food & Drink
 - Age rating target: 13+
 - Regulated medical device: No
-- Price: US $8.99 paid app; Apple-localized elsewhere
-- Distribution: iPhone, iOS 26+, non-EU storefronts where all advertised providers are available
+- Price: US $19.99 one-time paid app; $8.99 launch price for the first 100 recorded buyers; Apple-localized elsewhere
+- Distribution: iPhone, iOS 26+, worldwide except the 27 European Union storefronts
 
 ## Description
 
@@ -31,9 +31,12 @@ Nutrition values are estimates, not medical advice. Review and correct entries b
 
 ## URLs before submission
 
-- Privacy policy: deploy `public-site/privacy.html`
-- Terms: deploy `public-site/terms.html`
-- Support: deploy `public-site/support.html`
-- API-key safety: deploy `public-site/api-key-safety.html`
-- Provider billing: deploy `public-site/provider-billing.html`
-- Refunds: deploy `public-site/refunds.html`
+Use these deployed URLs until a custom domain replaces them:
+
+- Marketing: `https://tracal.vercel.app/`
+- Privacy policy: `https://tracal.vercel.app/privacy`
+- Terms: `https://tracal.vercel.app/terms`
+- Support: `https://tracal.vercel.app/support`
+- API-key safety: `https://tracal.vercel.app/api-key-safety`
+- Provider billing: `https://tracal.vercel.app/provider-billing`
+- Refunds: `https://tracal.vercel.app/refunds`

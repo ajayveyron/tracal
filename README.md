@@ -59,6 +59,10 @@ Do not add provider keys to schemes, xcconfig files, environment files, or test 
 - App Store metadata: [`AppStore/metadata.md`](AppStore/metadata.md)
 - App Review notes: [`AppStore/review-notes.md`](AppStore/review-notes.md)
 - Release checklist: [`AppStore/release-checklist.md`](AppStore/release-checklist.md)
-- Static privacy, terms, API-key safety, provider billing, refund, and support pages: [`public-site`](public-site)
+- Next.js marketing, privacy, terms, API-key safety, provider billing, refund, and support site: [`website`](website)
 
-The app is planned as a US $8.99 one-time paid download. Provider API access and charges are separate from the App Store purchase. Nutrition estimates are not medical advice.
+The public site is deployed at <https://tracal.vercel.app> through the Vercel project `tracal`.
+
+The app is planned as a US $19.99 one-time paid download, with an $8.99 launch price for the first 100 recorded buyers. Provider API access and charges are separate from the App Store purchase. Nutrition estimates are not medical advice.
+
+The v1 storefront plan is worldwide distribution except the 27 European Union countries. App Store Connect remains the source of truth for availability.

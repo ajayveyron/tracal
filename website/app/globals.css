@@ -1,0 +1,358 @@
+:root {
+  --bg-primary: #f4f5f1;
+  --bg-secondary: #e9ece5;
+  --bg-tertiary: #dde3d8;
+  --text-primary: #172019;
+  --text-secondary: #566159;
+  --text-inverse: #f8faf6;
+  --accent-primary: #325f46;
+  --accent-hover: #274d38;
+  --focus: #397352;
+  --radius-small: 0.85rem;
+  --radius-large: 1.6rem;
+  --page: min(70rem, calc(100% - 2rem));
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: ui-rounded, "SF Pro Rounded", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.6;
+  text-rendering: optimizeLegibility;
+}
+
+a {
+  color: inherit;
+  text-underline-offset: 0.2em;
+}
+
+a:hover {
+  color: var(--accent-primary);
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 4px;
+}
+
+.site-header {
+  width: var(--page);
+  margin: 0 auto;
+  min-height: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.brand {
+  font-size: 1.25rem;
+  font-weight: 780;
+  letter-spacing: -0.04em;
+  text-decoration: none;
+}
+
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 1.25rem;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.site-nav a {
+  text-decoration: none;
+}
+
+.hero,
+.page-hero {
+  width: var(--page);
+  margin: 0 auto;
+}
+
+.hero {
+  padding: clamp(5rem, 11vw, 9rem) 0 clamp(4rem, 9vw, 7rem);
+  max-width: 62rem;
+}
+
+.hero h1,
+.page-hero h1 {
+  max-width: 12ch;
+  margin: 0;
+  font-size: clamp(3.2rem, 9vw, 7.2rem);
+  line-height: 0.94;
+  letter-spacing: -0.07em;
+  text-wrap: balance;
+}
+
+.hero p,
+.page-hero p {
+  max-width: 42rem;
+  margin: 2rem 0 0;
+  color: var(--text-secondary);
+  font-size: clamp(1.1rem, 2.2vw, 1.35rem);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 2.2rem;
+}
+
+.button {
+  display: inline-flex;
+  min-height: 3.2rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.15rem;
+  border-radius: var(--radius-small);
+  background: var(--accent-primary);
+  color: var(--text-inverse);
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.button:hover {
+  background: var(--accent-hover);
+  color: var(--text-inverse);
+}
+
+.button.secondary {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+.button.secondary:hover {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+}
+
+.feature-grid,
+.price-panel,
+.plain-section,
+.legal-grid {
+  width: var(--page);
+  margin: 0 auto;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  padding: 0 0 clamp(5rem, 10vw, 8rem);
+}
+
+.feature-card {
+  min-height: 15rem;
+  padding: clamp(1.4rem, 3vw, 2rem);
+  border-radius: var(--radius-large);
+  background: var(--bg-secondary);
+}
+
+.feature-card:nth-child(2n) {
+  background: var(--bg-tertiary);
+}
+
+.feature-card h2,
+.price-copy h2,
+.plain-section h2,
+.legal-content h2 {
+  margin: 0 0 0.8rem;
+  font-size: clamp(1.35rem, 3vw, 2rem);
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+}
+
+.feature-card p,
+.price-copy p,
+.plain-section p,
+.legal-content p,
+.legal-content li {
+  color: var(--text-secondary);
+}
+
+.price-panel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: end;
+  padding: clamp(2rem, 5vw, 4rem);
+  border-radius: var(--radius-large);
+  background: var(--text-primary);
+  color: var(--text-inverse);
+}
+
+.price-panel p {
+  color: #c7d0c8;
+}
+
+.price {
+  font-size: clamp(4rem, 10vw, 7rem);
+  font-weight: 780;
+  letter-spacing: -0.07em;
+  line-height: 0.9;
+}
+
+.price small {
+  display: block;
+  margin-top: 1rem;
+  color: #c7d0c8;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 1.5;
+}
+
+.plain-section {
+  padding: clamp(5rem, 10vw, 8rem) 0;
+  max-width: 58rem;
+}
+
+.plain-section h2 {
+  max-width: 18ch;
+  font-size: clamp(2.4rem, 6vw, 4.8rem);
+}
+
+.page-hero {
+  padding: clamp(4rem, 8vw, 7rem) 0 3rem;
+}
+
+.page-hero h1 {
+  font-size: clamp(2.8rem, 7vw, 5.6rem);
+}
+
+.legal-grid {
+  display: grid;
+  grid-template-columns: minmax(11rem, 0.35fr) minmax(0, 1fr);
+  gap: clamp(2rem, 8vw, 7rem);
+  padding: 2rem 0 7rem;
+}
+
+.legal-meta {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.legal-meta p {
+  margin: 0 0 0.3rem;
+}
+
+.legal-content {
+  max-width: 48rem;
+}
+
+.legal-content h2 {
+  margin-top: 3rem;
+}
+
+.legal-content h2:first-child {
+  margin-top: 0;
+}
+
+.legal-content ul,
+.legal-content ol {
+  padding-left: 1.25rem;
+}
+
+.legal-content li + li {
+  margin-top: 0.6rem;
+}
+
+.callout {
+  margin: 2rem 0;
+  padding: 1.4rem;
+  border-radius: var(--radius-small);
+  background: var(--bg-secondary);
+}
+
+.callout p {
+  margin: 0;
+}
+
+.site-footer {
+  margin-top: 2rem;
+  background: var(--bg-secondary);
+}
+
+.footer-inner {
+  width: var(--page);
+  margin: 0 auto;
+  padding: 3rem 0;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2rem;
+  align-items: end;
+}
+
+.footer-inner p {
+  max-width: 34rem;
+  margin: 0.6rem 0 0;
+  color: var(--text-secondary);
+}
+
+.footer-links {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 0.6rem 1.4rem;
+  font-size: 0.92rem;
+}
+
+@media (max-width: 760px) {
+  .site-header {
+    align-items: flex-start;
+    padding: 1.2rem 0;
+  }
+
+  .site-nav {
+    gap: 0.6rem 1rem;
+  }
+
+  .feature-grid,
+  .price-panel,
+  .legal-grid,
+  .footer-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-card {
+    min-height: auto;
+  }
+
+  .footer-links {
+    grid-template-columns: repeat(3, auto);
+  }
+}
+
+@media (max-width: 480px) {
+  .site-header {
+    display: block;
+  }
+
+  .site-nav {
+    justify-content: flex-start;
+    margin-top: 0.8rem;
+  }
+
+  .footer-links {
+    grid-template-columns: repeat(2, auto);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

@@ -306,7 +306,6 @@ struct SettingsView: View {
 
 private struct ProviderSetupSheet: View {
     @Environment(\.dismiss) private var dismiss
-    @Environment(\.openURL) private var openURL
 
     let provider: AIProvider
     let container: ModelContainer
@@ -327,7 +326,7 @@ private struct ProviderSetupSheet: View {
                     VStack(alignment: .leading, spacing: TracalSpace.small) {
                         Text(provider.displayName)
                             .font(.largeTitle.bold())
-                        Text("Use a dedicated API key with a provider spending limit. The key stays in this iPhone's Keychain and is sent only to \(provider.displayName).")
+                        Text("Paste an existing \(provider.displayName) API key. The key stays in this iPhone's Keychain and is sent only to \(provider.displayName).")
                             .font(.subheadline)
                             .foregroundStyle(TracalColor.textSecondary)
                     }
@@ -375,13 +374,6 @@ private struct ProviderSetupSheet: View {
                     .buttonStyle(.tracalGlassProminent)
                     .disabled(isTesting || (!credentialStored && credential.isEmpty) || !consent)
                     .accessibilityIdentifier("provider.save")
-
-                    HStack {
-                        Button("Create key") { openURL(provider.apiKeyURL) }
-                            .buttonStyle(.tracalGlass)
-                        Button("Billing") { openURL(provider.billingURL) }
-                            .buttonStyle(.tracalGlass)
-                    }
 
                     if credentialStored {
                         Button(role: .destructive, action: deleteKey) {

@@ -215,12 +215,15 @@
     <header class="shell">
       <p class="kicker">iPhone · paid once · local first</p>
       <h1>Public without becoming invasive.</h1>
-      <p class="lede">Tracal is an $8.99 iPhone app with no account, backend, remote database, ads, or analytics. People bring one provider API key; meals and usage history remain on their device.</p>
+      <p class="lede">Tracal is a $19.99 paid-once iPhone app with no account, backend, remote database, ads, or analytics. The first 100 buyers pay an $8.99 launch price. People bring one provider API key; meals and usage history remain on their device.</p>
       <div class="hero-grid">
-        <div class="hero-card"><strong>$8.99</strong><span>US base price, one-time App Store purchase</span></div>
+        <div class="hero-card"><strong>$19.99</strong><span>Standard US price; $8.99 for the first 100 buyers</span></div>
         <div class="hero-card"><strong>No Tracal login</strong><span>No Sign in with Apple because there is no account</span></div>
         <div class="hero-card"><strong>Direct BYOK</strong><span>OpenAI, Anthropic, or Gemini—never a router</span></div>
         <div class="hero-card"><strong>Device-owned</strong><span>SwiftData, protected images, local usage history</span></div>
+      </div>
+      <div class="decision">
+        <p><strong>Launch pricing:</strong> publish at $8.99, monitor completed purchases in App Store Connect, and change the US base price to $19.99 as soon as the recorded count reaches 100. The offer is a one-time purchase, not a lifetime subscription. Because App Store pricing cannot switch on buyer count automatically, record the count and change timestamp; reporting delay may allow a small overrun.</p>
       </div>
     </header>
 
@@ -260,10 +263,12 @@
             <tr><td>PUB-202</td><td><strong>Commerce behavior</strong></td><td>Paid-app revocation handling, offline-safe access, Apple refund path.</td><td>PUB-101</td><td class="status done">Done</td></tr>
             <tr><td>PUB-203</td><td><strong>Public documents</strong></td><td>Privacy, terms, API-key safety, provider billing, refunds, support, review notes, metadata, and release checklist.</td><td>PUB-101</td><td class="status done">Done</td></tr>
             <tr><td>PUB-204</td><td><strong>Quick Log widget</strong></td><td>Medium Home Screen widget with Text, Camera, and Gallery actions. Scoped deep links open the existing public composer in the requested mode while preserving direct-provider usage recording.</td><td>PUB-101, PUB-104</td><td class="status done">Done</td></tr>
+            <tr><td>PUB-205</td><td><strong>Release compliance</strong></td><td>Paste-only provider setup, reconciled privacy manifest and App Store answers, export-compliance declaration, 1.0.0 build 14, review notes, and global-minus-EU storefront handoff.</td><td>PUB-102, PUB-203</td><td class="status done">Done</td></tr>
+            <tr><td>PUB-206</td><td><strong>Public website</strong></td><td>Responsive Next.js marketing site with privacy, terms, support, API-key safety, provider billing, refunds, favicon, and social preview images deployed at <code>tracal.vercel.app</code>.</td><td>PUB-203</td><td class="status done">Done</td></tr>
             <tr><td>PUB-301</td><td><strong>Provider fixture matrix</strong></td><td>20 text and 20 photo fixtures per default model, live token matching, price checks, non-food and failure coverage.</td><td>Provider test budgets</td><td class="status planned">Planned</td></tr>
             <tr><td>PUB-302</td><td><strong>Device and accessibility QA</strong></td><td>VoiceOver, Dynamic Type, Reduce Motion, dark mode, keyboard, Camera/Photos handoff, offline and restore flows.</td><td>Physical iPhones</td><td class="status progress">In progress</td></tr>
             <tr><td>PUB-303</td><td><strong>StoreKit QA</strong></td><td>Verified revocation, repurchase, offline behavior, and App Store receipt scenarios.</td><td>StoreKit configuration</td><td class="status planned">Planned</td></tr>
-            <tr><td>PUB-401</td><td><strong>App Store Connect</strong></td><td>Paid Apps Agreement, tax, banking, $8.99 price, categories, age rating, privacy label, screenshots, and manual release.</td><td>Account owner</td><td class="status external">Owner action</td></tr>
+            <tr><td>PUB-401</td><td><strong>App Store Connect</strong></td><td>Paid Apps Agreement, tax, banking, $8.99 launch price for the first 100 recorded buyers, $19.99 standard price, worldwide availability excluding the EU 27, categories, age rating, reconciled privacy label, screenshots, and manual release.</td><td>Account owner</td><td class="status external">Owner action</td></tr>
             <tr><td>PUB-402</td><td><strong>TestFlight</strong></td><td>10–20 internal testers, 50–100 external recruits, 30 seven-day users, at least 99.5% crash-free sessions.</td><td>PUB-301–401</td><td class="status planned">Planned</td></tr>
             <tr><td>PUB-403</td><td><strong>Public launch</strong></td><td>24-hour quiet release, day-two LinkedIn and beta email, then 14 days of crash, review, refund, provider, and support monitoring.</td><td>PUB-402</td><td class="status planned">Planned</td></tr>
           </tbody>
@@ -280,7 +285,7 @@
         <article><div><h3>Finish automated coverage</h3><p>Provider fixtures, pricing, retry accounting, backup/import, deletion, and StoreKit scenarios.</p></div></article>
         <article><div><h3>Internal TestFlight</h3><p>10–20 people validate setup clarity, key safety, meal logging, and crash telemetry from Apple.</p></div></article>
         <article><div><h3>External TestFlight</h3><p>Recruit 50–100 iPhone users from LinkedIn. Require at least 30 to use the app for seven days.</p></div></article>
-        <article><div><h3>Submit manually</h3><p>Use sample-meal review mode, direct-provider disclosure, static support URLs, and manual release.</p></div></article>
+        <article><div><h3>Submit manually</h3><p>Use sample-meal review mode, direct-provider disclosure, the deployed Tracal support URLs, and manual release.</p></div></article>
         <article><div><h3>Quiet production day</h3><p>Release without announcement, inspect crashes, reviews, refunds, and provider failures for 24 hours.</p></div></article>
         <article><div><h3>Announce and monitor</h3><p>Publish LinkedIn and beta-list email on day two. Continue focused monitoring for 14 days.</p></div></article>
       </div>
@@ -313,6 +318,10 @@
       <div class="change-row"><time datetime="2026-07-11">11 July 2026</time><p>Created the private Tracal repository, committed the complete personal baseline to <code>main</code>, pushed it, and created <code>public</code> from that exact commit.</p></div>
       <div class="change-row"><time datetime="2026-07-11">11 July 2026</time><p>Implemented the public architecture on <code>public</code>: removed the private gateway, added direct OpenAI/Anthropic/Gemini BYOK, device-only keys, consent, strict schema validation, retry-level usage and estimated cost, local backup/import/deletion, paid-app revocation handling, six static public pages, App Store materials, sample-meal review mode, and required-reason privacy metadata. Generic iOS build, 18 core tests, 15 app unit tests, and three simulator UI tests pass. Live provider matrices, StoreKit, accessibility, physical-device, TestFlight, and App Store Connect work remain.</p></div>
       <div class="change-row"><time datetime="2026-07-11">11 July 2026</time><p>Completed PUB-204 by cherry-picking the focused Quick Log widget commit from <code>main</code> without merging branch histories. The public adaptation keeps BYOK usage recording active for widget-launched requests, registers three scoped deep links, embeds the separately signed widget extension, and carries over the date-strip chevron alignment correction.</p></div>
+      <div class="change-row"><time datetime="2026-07-11">11 July 2026</time><p>Set the public pricing strategy to a $19.99 one-time standard price with an $8.99 launch price for the first 100 recorded buyers. Updated PUB-401 and the App Store handoff with the manual count-and-change procedure.</p></div>
+      <div class="change-row"><time datetime="2026-07-11">11 July 2026</time><p>Completed PUB-205 and PUB-206. Removed in-app provider key-creation and billing links, reconciled the privacy manifest and App Store privacy answers for direct provider processing, declared exempt encryption, set version 1.0.0 build 14, documented worldwide-minus-EU storefront availability, and replaced the static pages with a Next.js site deployed to <code>https://tracal.vercel.app</code>. Local and Vercel builds pass with zero npm audit findings.</p></div>
+      <div class="change-row"><time datetime="2026-07-11">11 July 2026</time><p>Added the Tracal favicon and generated Open Graph and X/Twitter preview images to PUB-206, including canonical social metadata for the production Vercel URL.</p></div>
+      <div class="change-row"><time datetime="2026-07-11">11 July 2026</time><p>Validated the release-prep implementation: 18 TracalCore tests and 17 iPhone 17 simulator unit tests pass; the fourteen-route website type-checks, builds locally and on Vercel, and reports zero production dependency vulnerabilities.</p></div>
     </section>
   </main>
 

@@ -23,22 +23,6 @@ public enum AIProvider: String, Codable, CaseIterable, Identifiable, Sendable {
         }
     }
 
-    var apiKeyURL: URL {
-        switch self {
-        case .openAI: URL(string: "https://platform.openai.com/api-keys")!
-        case .anthropic: URL(string: "https://console.anthropic.com/settings/keys")!
-        case .gemini: URL(string: "https://aistudio.google.com/apikey")!
-        }
-    }
-
-    var billingURL: URL {
-        switch self {
-        case .openAI: URL(string: "https://platform.openai.com/settings/organization/billing/overview")!
-        case .anthropic: URL(string: "https://console.anthropic.com/settings/billing")!
-        case .gemini: URL(string: "https://aistudio.google.com/usage")!
-        }
-    }
-
     var systemImage: String {
         switch self {
         case .openAI: "circle.hexagongrid"

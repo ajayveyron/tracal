@@ -38,6 +38,7 @@ targets:
         CFBundleDisplayName: Tracal
         CFBundleShortVersionString: $(MARKETING_VERSION)
         CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        ITSAppUsesNonExemptEncryption: false
         CFBundleURLTypes:
           - CFBundleURLName: com.ajaypawriya.tracal.widget-actions
             CFBundleURLSchemes:
@@ -65,8 +66,8 @@ targets:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.ajaypawriya.tracal
         PRODUCT_NAME: Tracal
-        MARKETING_VERSION: 0.1.0
-        CURRENT_PROJECT_VERSION: 13
+        MARKETING_VERSION: 1.0.0
+        CURRENT_PROJECT_VERSION: 14
         GENERATE_INFOPLIST_FILE: NO
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
@@ -95,8 +96,8 @@ targets:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.ajaypawriya.tracal.widget
         PRODUCT_NAME: TracalWidget
-        MARKETING_VERSION: 0.1.0
-        CURRENT_PROJECT_VERSION: 13
+        MARKETING_VERSION: 1.0.0
+        CURRENT_PROJECT_VERSION: 14
         GENERATE_INFOPLIST_FILE: NO
         APPLICATION_EXTENSION_API_ONLY: YES
         SKIP_INSTALL: YES
