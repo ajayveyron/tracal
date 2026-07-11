@@ -58,7 +58,7 @@ final class TracalUITests: XCTestCase {
         )
 
         try app.performAccessibilityAudit(
-            for: [.dynamicType, .textClipped, .sufficientElementDescription, .hitRegion, .trait]
+            for: [.textClipped, .sufficientElementDescription, .hitRegion, .trait]
         )
 
         app.buttons["today.log"].tap()
@@ -67,8 +67,23 @@ final class TracalUITests: XCTestCase {
         XCTAssertTrue(app.buttons["log.photos"].isHittable)
 
         try app.performAccessibilityAudit(
-            for: [.dynamicType, .textClipped, .sufficientElementDescription, .hitRegion, .trait]
+            for: [.textClipped, .sufficientElementDescription, .hitRegion, .trait]
         )
+    }
+
+    @MainActor
+    func testDynamicTypeSupport() throws {
+        continueAfterFailure = true
+        let app = XCUIApplication()
+        app.launchArguments.append("-ui-testing")
+        app.launch()
+
+        XCTAssertTrue(app.buttons["today.log"].waitForExistence(timeout: 8))
+        try app.performAccessibilityAudit(for: [.dynamicType])
+
+        app.buttons["today.log"].tap()
+        XCTAssertTrue(app.textViews["log.description"].waitForExistence(timeout: 5))
+        try app.performAccessibilityAudit(for: [.dynamicType])
     }
 
     @MainActor

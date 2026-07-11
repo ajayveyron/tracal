@@ -328,6 +328,7 @@
       <div class="change-row"><time datetime="2026-07-11">11 July 2026</time><p>Added the no-downgrade release path: use Xcode 27 beta for the initial Xcode Cloud configuration, select branch <code>public</code>, and have Apple’s cloud environment test and archive with Xcode 26.6 on a supported macOS 26.x image. After the first build, manage the workflow and submission from App Store Connect.</p></div>
       <div class="change-row"><time datetime="2026-07-11">11 July 2026</time><p>Added a GitHub Actions validation gate for every <code>public</code> push. It uses GitHub’s macOS 26 runner, selects Xcode 26.6, runs TracalCore, app, UI, largest-text, keyboard, and accessibility-audit tests, and retains the result bundle. Xcode Cloud remains the signed archive and App Store distribution path.</p></div>
       <div class="change-row"><time datetime="2026-07-11">11 July 2026</time><p>Hardened the Xcode 26.6 compatibility gate after its first cloud compile: paid-app revocation now reads the supported field from StoreKit’s verified JSON representation, while accessibility UI tests suppress custom animation without attempting to write SwiftUI’s read-only Reduce Motion environment value.</p></div>
+      <div class="change-row"><time datetime="2026-07-11">11 July 2026</time><p>Separated largest-text layout auditing from Dynamic Type responsiveness auditing so Apple’s size-changing audit is not blocked by the fixed accessibility-size test environment, and expanded the sample-meal action to the 44-point minimum target.</p></div>
     </section>
   </main>
 

@@ -160,6 +160,7 @@ public struct LogComposerView: View {
                         model.loadSampleMeal()
                     }
                     .font(.subheadline.weight(.semibold))
+                    .frame(minHeight: TracalMetric.minimumTapTarget)
                     .buttonStyle(.tracalGlass)
                     .accessibilityIdentifier("log.sample")
                 }
